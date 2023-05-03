@@ -1,0 +1,28 @@
+Silly Ramen Obliterates Frog
+Selena Ho (PM)
+Wanying Li
+Sadi Nirloy
+James Yu
+pd 8
+---------------------
+P04
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+SelenaH 2023-5-3 17:10
+--------------------------------------------------------------
+Design Doc changes:
+- clarified some parts that Team Bubbling Banjos and Team Gwoblins found confusing
+- included the meaning behind the column names in the poverty table
+- separated our site map and our mockup
+- made the mock up digital so that it would be neater and more organized
+==============================================================
