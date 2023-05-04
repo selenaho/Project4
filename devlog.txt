@@ -18,8 +18,12 @@ P04
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-SelenaH 2023-5-3 17:10
+SelenaH 2023-5-3 21:06
 --------------------------------------------------------------
+Feedback:
+- site map was messy
+- component map should be bigger
+- clarify on what the column names of the poverty table stand for/mean
 Design Doc changes:
 - clarified some parts that Team Bubbling Banjos and Team Gwoblins found confusing
 - included the meaning behind the column names in the poverty table
