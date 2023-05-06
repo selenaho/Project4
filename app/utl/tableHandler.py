@@ -94,12 +94,11 @@ def countyVoting(state, county):
     c.execute(cmd,(state, county))
     results = c.fetchall()
     if (results != None):
-        for answer in results:
-            print(answer)
+        return results
     else:
         return "Give real county"
 
     db.commit()
     db.close()
 
-countyVoting("Delaware", "Sussex County")
+print(countyVoting("New Jersey", "Sussex County"))
