@@ -86,4 +86,20 @@ def loadTable(tableName, csvName):
     db.commit()
     db.close()
 
- 
+def countyVoting(state, county):
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    cmd = "select candidate, party, total_votes, won from PresidentElection2020 where state=? and county=?;"
+    c.execute(cmd,(state, county))
+    results = c.fetchall()
+    if (results != None):
+        for answer in results:
+            print(answer)
+    else:
+        return "Give real county"
+
+    db.commit()
+    db.close()
+
+countyVoting("Delaware", "Sussex County")
