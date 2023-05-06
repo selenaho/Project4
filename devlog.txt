@@ -13,7 +13,7 @@ P04
  \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
   \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
    \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
-    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+    \____/_/ \_____\/ \___/_/   \_____\/ \_____\/ \_____\/ 
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -29,4 +29,11 @@ Design Doc changes:
 - included the meaning behind the column names in the poverty table
 - separated our site map and our mockup
 - made the mock up digital so that it would be neater and more organized
+==============================================================
+SelenaH, SadiN, JamesY 2023-5-5 14:06
+--------------------------------------------------------------
+Classwork:
+- started the templates, js, flask and db methods
+- decided to have two pages one for the game and one for the result and treat the button choices as a form that will lead to the results page
+- need to update design doc to reflect the changes
 ==============================================================
