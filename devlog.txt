@@ -37,3 +37,8 @@ Classwork:
 - decided to have two pages one for the game and one for the result and treat the button choices as a form that will lead to the results page
 - need to update design doc to reflect the changes
 ==============================================================
+WanyingL 2023-5-7 18:20
+--------------------------------------------------------------
+html:
+- translated design doc ideas onto game.html and result.html
+==============================================================
