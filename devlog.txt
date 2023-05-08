@@ -42,3 +42,9 @@ WanyingL 2023-5-7 18:20
 html:
 - translated design doc ideas onto game.html and result.html
 ==============================================================
+SelenaH, WanyingL, SadiN, JamesY 2023-5-8 14:06
+--------------------------------------------------------------
+- new db methods added
+- figuring out how to do graphs in js/html
+- worked on flask, updated readme
+==============================================================
