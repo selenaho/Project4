@@ -21,7 +21,7 @@ def colsString(listy):
         if (item != listy[-1]):
             string += ", "
     return string
-
+"""
 def loadElection():
 
 # Setting up database interaction
@@ -53,7 +53,7 @@ def loadElection():
 
     db.commit()
     db.close()
-
+"""
 def loadTable(tableName, csvName):
 
 # Setting up database interaction
@@ -66,7 +66,7 @@ def loadTable(tableName, csvName):
 
 # Creating the table based on the first row of the csv
     cols = full[0].strip().split(",")
-    # print(colsString(cols))
+    print(colsString(cols))
     c.execute("create table if not exists " + tableName +"(" + colsString(cols) + ");" )
 
 # Checking if the table is empty
@@ -78,9 +78,8 @@ def loadTable(tableName, csvName):
         for row in full:
             if( row != full[0]):
                 line = row.strip().split(",")
-                #print(line)
                 cmd = "insert into " + tableName + " values(?" + (", ?" *(len(line) - 1)) + ");"
-                #print(cmd)
+                print(cmd)
                 c.execute(cmd, tuple(line))
 
     db.commit()
@@ -90,10 +89,12 @@ def countyVoting(state, county):
     db = sqlite3.connect(database)
     c = db.cursor()
 
-    cmd = "select candidate, party, total_votes, won from PresidentElection2020 where state=? and county=?;"
+    cmd = "select candidate, party, total_votes, won from ElectionResults2020 where state=? and county=?;"
     c.execute(cmd,(state, county))
     results = c.fetchall()
     if (results != None):
+        db.commit()
+        db.close()
         return results
     else:
         return "Give real county"
@@ -101,4 +102,23 @@ def countyVoting(state, county):
     db.commit()
     db.close()
 
+def getCounties():
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    lst = []
+    c.execute("select state, county from ElectionResults2020")
+    results = c.fetchall()
+    for county in results:
+        if (len(lst) == 0 or lst[-1] != county):
+            lst.append(county)
+
+    db.commit()
+    db.close()
+    return lst
+
+loadTable("ElectionResults2020", "president_county_candidate.csv")
+# loadTable("Education", "Education.csv")
+
 print(countyVoting("New Jersey", "Sussex County"))
+print(getCounties())
