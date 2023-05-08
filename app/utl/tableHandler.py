@@ -54,7 +54,7 @@ def loadElection():
     db.commit()
     db.close()
 """
-def loadTable(tableName, csvName):
+def loadTable(tableName, csvName): # Putting a table into the db
 
 # Setting up database interaction
     db = sqlite3.connect(database)
@@ -66,7 +66,7 @@ def loadTable(tableName, csvName):
 
 # Creating the table based on the first row of the csv
     cols = full[0].strip().split(",")
-    print(colsString(cols))
+    #print(colsString(cols))
     c.execute("create table if not exists " + tableName +"(" + colsString(cols) + ");" )
 
 # Checking if the table is empty
@@ -79,13 +79,13 @@ def loadTable(tableName, csvName):
             if( row != full[0]):
                 line = row.strip().split(",")
                 cmd = "insert into " + tableName + " values(?" + (", ?" *(len(line) - 1)) + ");"
-                print(cmd)
+                #print(cmd)
                 c.execute(cmd, tuple(line))
 
     db.commit()
     db.close()
 
-def countyVoting(state, county):
+def countyVoting(state, county): # Given a state and county, return the voting results of the election there
     db = sqlite3.connect(database)
     c = db.cursor()
 
@@ -102,7 +102,7 @@ def countyVoting(state, county):
     db.commit()
     db.close()
 
-def getCounties():
+def getCounties(): #Return a list of all counties with their state
     db = sqlite3.connect(database)
     c = db.cursor()
 
@@ -117,8 +117,22 @@ def getCounties():
     db.close()
     return lst
 
+def getCandidates(): #Get a list of all people who participated in the election
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    lst = []
+    c.execute("select candidate from ElectionResults2020")
+    results = c.fetchall()
+    for person in results:
+        if (not person in lst):
+            lst.append(person)
+    return lst
+
 loadTable("ElectionResults2020", "president_county_candidate.csv")
 # loadTable("Education", "Education.csv")
 
 print(countyVoting("New Jersey", "Sussex County"))
 print(getCounties())
+print("\n\n")
+print(getCandidates())
