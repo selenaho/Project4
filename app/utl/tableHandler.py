@@ -127,7 +127,21 @@ def getCandidates(): #Get a list of all people who participated in the election
     for person in results:
         if (not person in lst):
             lst.append(person)
+    db.commit()
+    db.close()
     return lst
+
+def countyWin(state, county): #Given a state and county, return who won the election there
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    cmd = "select candidate, party, total_votes from ElectionResults2020 where state=? and county=? and won='True';"
+
+    c.execute(cmd,(state, county))
+    return c.fetchone()
+
+    db.commit()
+    db.close()    
 
 loadTable("ElectionResults2020", "president_county_candidate.csv")
 # loadTable("Education", "Education.csv")
@@ -136,3 +150,9 @@ print(countyVoting("New Jersey", "Sussex County"))
 print(getCounties())
 print("\n\n")
 print(getCandidates())
+print("\n\n")
+
+someList = getCounties()
+for county in someList:
+    print(county)
+    print(countyWin(county[0], county[1]))
