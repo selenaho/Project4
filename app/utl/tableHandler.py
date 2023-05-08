@@ -14,14 +14,29 @@ db.close()
 
 database = os.getcwd() + "/../dillbickle"
 
-def colsString(listy):
+def colsString(listy): #Method for turning columns into a string to build a table
     string = ""
     for item in listy:
         string += f'\"{item}\" text'
         if (item != listy[-1]):
             string += ", "
     return string
-"""
+
+def specSplit(character, string): #Split accomodating quotes
+    lst = []
+    word =""
+    quoted = False
+    for letter in string:
+        if (letter == '"'):
+            quoted = not quoted
+        if (letter == character and (not quoted)):
+            if(len(word) > 0):
+                lst.append(word)
+            word = ""
+        else:
+            word += character
+    return lst
+
 def loadElection():
 
 # Setting up database interaction
@@ -53,37 +68,7 @@ def loadElection():
 
     db.commit()
     db.close()
-"""
-def loadTable(tableName, csvName): # Putting a table into the db
 
-# Setting up database interaction
-    db = sqlite3.connect(database)
-    c = db.cursor()
-
-# Loading up the csv
-    read = open(os.getcwd() + f'/../csvs/{csvName}', "r")
-    full = read.readlines()
-
-# Creating the table based on the first row of the csv
-    cols = full[0].strip().split(",")
-    #print(colsString(cols))
-    c.execute("create table if not exists " + tableName +"(" + colsString(cols) + ");" )
-
-# Checking if the table is empty
-    c.execute(f'select * from {tableName}')
-    empty = c.fetchone()
-    # print(empty)
-    if (empty == None):
-#Filling out the table
-        for row in full:
-            if( row != full[0]):
-                line = row.strip().split(",")
-                cmd = "insert into " + tableName + " values(?" + (", ?" *(len(line) - 1)) + ");"
-                #print(cmd)
-                c.execute(cmd, tuple(line))
-
-    db.commit()
-    db.close()
 
 def countyVoting(state, county): # Given a state and county, return the voting results of the election there
     db = sqlite3.connect(database)
@@ -143,8 +128,8 @@ def countyWin(state, county): #Given a state and county, return who won the elec
     db.commit()
     db.close()    
 
-loadTable("ElectionResults2020", "president_county_candidate.csv")
-# loadTable("Education", "Education.csv")
+"""
+loadElection()
 
 print(countyVoting("New Jersey", "Sussex County"))
 print(getCounties())
@@ -156,3 +141,4 @@ someList = getCounties()
 for county in someList:
     print(county)
     print(countyWin(county[0], county[1]))
+"""
