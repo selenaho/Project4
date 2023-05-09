@@ -70,3 +70,7 @@ SelenaH, WanyingL, SadiN, JamesY 2023-5-8 14:06
 - figuring out how to do graphs in js/html
 - worked on flask, updated readme
 ==============================================================
+JamesY 2023-5-9 19:48
+--------------------------------------------------------------
+- added feature to select between a bar graph and a pie chart from a dropdown
+==============================================================
