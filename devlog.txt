@@ -63,3 +63,10 @@ DATA CONDUIT:
 - Once specific info is picked out, we turn it into HTML
     - This HTML is either a button or information for data visualization that will be added in a form request
 - Javascript then touches up the buttons or uses the Google Visualization API to create the graphicals
+==============================================================
+SelenaH, WanyingL, SadiN, JamesY 2023-5-8 14:06
+--------------------------------------------------------------
+- new db methods added
+- figuring out how to do graphs in js/html
+- worked on flask, updated readme
+==============================================================
