@@ -12,7 +12,13 @@ db.commit()
 db.close()
 """
 
-database = os.getcwd() + "/../dillbickle"
+dirs = __file__.split("/")
+currDir = ""
+for dirr in dirs:
+    if (dirr != dirs[-1]):
+        currDir += "/" + dirr
+database = currDir + "/../dillbickle"
+print(database)
 
 def colsString(listy): #Method for turning columns into a string to build a table
     string = ""
@@ -44,7 +50,7 @@ def loadElection():
     c = db.cursor()
 
 # Loading up the csv
-    read = open(os.getcwd() + "/csvs/president_county_candidate.csv", "r")
+    read = open(currDir + "/../csvs/president_county_candidate.csv", "r")
     full = read.readlines()
 
 # Creating the table based on the first row of the csv
