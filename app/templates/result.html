@@ -13,21 +13,25 @@
     <!-- add layout using bootstrap later-->
     <h3>Education Rate</h3> 
     <p>insert graph</p>
-    <select>
+    <select id="education">
         <option selected>I want a different look.</option>
         <option value = "barGraph">Bar Graph</option>
         <option value = "Pie">Pie Graph</option>
         <option>and more to come</option>
     </select>
 
+    <div id="chart"></div>
+
     <h3>Unemployment Rate</h3> 
     <p>insert graph</p>
-    <select>
+    <select id="unemployment">
         <option selected>I want a different look.</option>
         <option value = "barGraph">Bar Graph</option>
         <option value = "Pie">Pie Graph</option>
         <option>and more to come</option>
     </select>
+
+    <div id="chart2"></div>
 
     <h3>Median Household Income: {{medianHouseIncome}}</h3>
     <h3>2020 Country Poverty Rate: {{CountyPovertyRate}}</h3>
@@ -36,9 +40,8 @@
 
     <a href = "/">NEXT</a>
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="../static/js/game.js"></script>
 
-    <!--
-        <script src="../static/js/game.js"></script>
-    -->
 </body>
 </html>
