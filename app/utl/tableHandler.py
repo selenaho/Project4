@@ -44,7 +44,7 @@ def loadElection():
     c = db.cursor()
 
 # Loading up the csv
-    read = open(os.getcwd() + "/../csvs/president_county_candidate.csv", "r")
+    read = open(os.getcwd() + "/csvs/president_county_candidate.csv", "r")
     full = read.readlines()
 
 # Creating the table based on the first row of the csv
@@ -174,7 +174,10 @@ for county in someList:
     print(countyWin(county[0], county[1]))
 print("\n\n\n")
 """
+
+"""
 otherList = getStates()
 print(otherList)
 for state in otherList:
     print(getCountyfromState(state))
+"""
