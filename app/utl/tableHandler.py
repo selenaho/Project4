@@ -126,11 +126,42 @@ def countyWin(state, county): #Given a state and county, return who won the elec
     return c.fetchone()
 
     db.commit()
-    db.close()    
+    db.close()  
 
-"""
+def getStates(): #list of all states
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    lst = []
+    c.execute("select state from ElectionResults2020;")
+    results = c.fetchall()
+    for state in results:
+        if (len(lst) == 0 or lst[-1] != state[0]):
+            lst.append(state[0])
+    db.commit()
+    db.close()  
+    return lst
+    
+
+def getCountyfromState(state): #given a state, get all the counties in the state
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    lst = []
+    cmd = "select county from ElectionResults2020 where state=?;"
+    c.execute(cmd, (state,))
+    results = c.fetchall()
+    for place in results:
+        if (len(lst) == 0 or lst[-1] != place[0]):
+            lst.append(place[0])
+
+    db.commit()
+    db.close()  
+    return lst   
+
+
 loadElection()
-
+"""
 print(countyVoting("New Jersey", "Sussex County"))
 print(getCounties())
 print("\n\n")
@@ -141,4 +172,9 @@ someList = getCounties()
 for county in someList:
     print(county)
     print(countyWin(county[0], county[1]))
+print("\n\n\n")
 """
+otherList = getStates()
+print(otherList)
+for state in otherList:
+    print(getCountyfromState(state))
