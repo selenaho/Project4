@@ -15,7 +15,7 @@ The website allows users to guess which 2020 presidential candidate won in a cer
 
 ### How to Run
 5) cd into `app/` 
-6) Run the `__init__.py` file in the app route through the `python3 ../__init__.py` command. 
+6) Run the `__init__.py` file in the app route through the `python3 __init__.py` command. 
 6) Navigate to the site located at `http://127.0.0.1:5000`. 
 
 ## or you can go here: (link)
