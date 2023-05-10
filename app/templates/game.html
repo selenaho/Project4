@@ -11,12 +11,14 @@
     <h2>County Name: {{countyName}}</h2>
     <h2>State Name: {{stateName}}</h2>
     <h3>Your choices are: </h3>
-    <div id="replace">
+    <form action="/" method="POST">
         <button id="a">{{a}}</button></br>
         <button id="b">{{b}}</button></br>    
         <button id="c">{{c}}</button></br>
-        <button id="d">{{d}}</button></br>        
-    </div>
+        <button id="d">{{d}}</button></br>
+        <input type="hidden" name="state" value={{stateName}}>
+        <input type="hidden" name="county" value={{countyName}}>        
+    </form>
 
     <script src="../static/js/game.js"></script>
 </body>
