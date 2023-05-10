@@ -47,7 +47,7 @@ def loadElection():
     c = db.cursor()
 
 # Loading up the csv
-    read = open(csvFolder + "/../csvs/president_county_candidate.csv", "r")
+    read = open(csvFolder + "/president_county_candidate.csv", "r")
     full = read.readlines()
 
 # Creating the table based on the first row of the csv
