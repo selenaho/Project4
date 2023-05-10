@@ -7,13 +7,13 @@ pd 8
 ---------------------
 P04
 
- ______   ______   __   __   __       ______   _______     
-/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
-\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
- \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
-  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
-   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
-    \____/_/ \_____\/ \___/_/   \_____\/ \_____\/ \_____\/ 
+ ______   ______   __   __   __   	______   _______	 
+/_____/\ /_____/\ /_/\ /_/\ /_/\ 	/_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \	\:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \	\:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+	\____/_/ \_____\/ \___/_/   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -49,26 +49,31 @@ WanyingL 2023-5-7 18:20
 html:
 - translated design doc ideas onto game.html and result.html
 ==============================================================
-SadiN 2023-5-18:30
+SadiN 2023-5-8 18:30
 --------------------------------------------------------------
 sqlite3:
 - Additional functions to gather specific bits of information
-==============================================================
-SadiN 2023-5-9
---------------------------------------------------------------
-DATA CONDUIT:
-- The information of the database is exclusively interacted with by app/utl/tableHandler.py 
-- app/__init__.py accesses this information by importing utl/tableHandler.py and uses its functions to get raw information
-- Parts of the flask app then apply logic to the raw information to specify or pick random parts
-- Once specific info is picked out, we turn it into HTML
-    - This HTML is either a button or information for data visualization that will be added in a form request
-- Javascript then touches up the buttons or uses the Google Visualization API to create the graphicals
 ==============================================================
 SelenaH, WanyingL, SadiN, JamesY 2023-5-8 14:06
 --------------------------------------------------------------
 - new db methods added
 - figuring out how to do graphs in js/html
 - worked on flask, updated readme
+==============================================================
+SadiN 2023-5-9 14:06
+--------------------------------------------------------------
+DATA CONDUIT:
+- The information of the database is exclusively interacted with by app/utl/tableHandler.py
+- app/__init__.py accesses this information by importing utl/tableHandler.py and uses its functions to get raw information
+- Parts of the flask app then apply logic to the raw information to specify or pick random parts
+- Once specific info is picked out, we turn it into HTML
+	- This HTML is either a button or information for data visualization that will be added in a form request
+- Javascript then touches up the buttons or uses the Google Visualization API to create the graphicals
+==============================================================
+JamesY, WanyingL 2023-5-9 14:06
+--------------------------------------------------------------
+- uploaded requirement.txt
+- added launch code to readme
 ==============================================================
 JamesY 2023-5-9 19:48
 --------------------------------------------------------------
