@@ -79,3 +79,7 @@ JamesY 2023-5-9 19:48
 --------------------------------------------------------------
 - added feature to select between a bar graph and a pie chart from a dropdown
 ==============================================================
+SelenaH 2023-5-10 18:03
+--------------------------------------------------------------
+- answer choices/buttons now have candidates and state and county name displayed in html
+==============================================================
