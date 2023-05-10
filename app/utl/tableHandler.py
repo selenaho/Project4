@@ -14,8 +14,9 @@ db.close()
 """
 
 basePath = sys.path[0]
-database = basePath + "/../dillbickle"
-csvFolder = basePath + "/../csvs"
+database = basePath + "/dillbickle"
+csvFolder = basePath + "/csvs"
+print(sys.path)
 
 def colsString(listy): #Method for turning columns into a string to build a table
     string = ""
@@ -162,7 +163,7 @@ def getCountyfromState(state): #given a state, get all the counties in the state
     db.close()  
     return lst   
 
-
+"""
 loadElection()
 
 print(countyVoting("New Jersey", "Sussex County"))
@@ -181,3 +182,4 @@ otherList = getStates()
 print(otherList)
 for state in otherList:
     print(getCountyfromState(state))
+"""
