@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import sys
 
 """ Sample
 database = os.getcwd() + "/../dillbickle"
@@ -12,13 +13,9 @@ db.commit()
 db.close()
 """
 
-dirs = __file__.split("/")
-currDir = ""
-for dirr in dirs:
-    if (dirr != dirs[-1]):
-        currDir += "/" + dirr
-database = currDir + "/../dillbickle"
-print(database)
+basePath = sys.path[0]
+database = basePath + "/../dillbickle"
+csvFolder = basePath + "/../csvs"
 
 def colsString(listy): #Method for turning columns into a string to build a table
     string = ""
@@ -50,7 +47,7 @@ def loadElection():
     c = db.cursor()
 
 # Loading up the csv
-    read = open(currDir + "/../csvs/president_county_candidate.csv", "r")
+    read = open(csvFolder + "/../csvs/president_county_candidate.csv", "r")
     full = read.readlines()
 
 # Creating the table based on the first row of the csv
@@ -167,7 +164,7 @@ def getCountyfromState(state): #given a state, get all the counties in the state
 
 
 loadElection()
-"""
+
 print(countyVoting("New Jersey", "Sussex County"))
 print(getCounties())
 print("\n\n")
@@ -179,11 +176,8 @@ for county in someList:
     print(county)
     print(countyWin(county[0], county[1]))
 print("\n\n\n")
-"""
 
-"""
 otherList = getStates()
 print(otherList)
 for state in otherList:
     print(getCountyfromState(state))
-"""
