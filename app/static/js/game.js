@@ -9,6 +9,7 @@ var job_charts = document.getElementById('chart2');//unemployment chart div
 
 var pick_graph = () =>{
   //console.log(education.value); //gets the value of the selected option
+  
   if (education.value == "Pie"){
     edu_charts.style.height = "300px";//sets height of chart
     edu_charts.style.width = "540px";//sets width of chart
