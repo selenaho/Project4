@@ -84,3 +84,7 @@ SelenaH 2023-5-10 18:59
 - answer choices/buttons now have candidates and state and county name displayed in html
 - bug: countyWin works in the main page but not the result page?
 ==============================================================
+SelenaH 2023-5-10 19:52
+--------------------------------------------------------------
+- fixed bug: had to do with the spaces in the county and state names
+==============================================================

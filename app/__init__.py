@@ -26,13 +26,21 @@ def main_page():
                 candidateArray[i] = random.choice(table.getCandidates())[0]
         print(candidateArray)
 
-        return render_template("game.html", countyName = randCounty, stateName = randState, a = candidateArray[0], b = candidateArray[1], c = candidateArray[2], d = candidateArray[3], winnerIndex = winnerIndex)#pass through the four answer choices and index of the correct answer 
+        stateNameValue = randState.replace(" ", "|")
+        countyNameValue = randCounty.replace(" ", "|")
+
+        return render_template("game.html", countyName = randCounty, stateName = randState, stateNameValue = stateNameValue, countyNameValue = countyNameValue, a = candidateArray[0], b = candidateArray[1], c = candidateArray[2], d = candidateArray[3], winnerIndex = winnerIndex)#pass through the four answer choices and index of the correct answer 
     else:
        county = request.form.get("county") #gets hidden value of county name from form
        state = request.form.get("state") #gets hidden value of state name from form
        #winner = table.countyWin(state, county)
        #print(table.countyWin(state, county))
        #print(winner)
+       print(state)
+       print(county)
+       #state = state.replace(" ", "|")
+       #county = county.replace(" ", "|")
+       print("________")
        print(state)
        print(county)
        return redirect(url_for("result", state=state, county=county))#pass through correct answer, county name, state name
@@ -42,14 +50,14 @@ def result(state, county):
     if request.method == 'GET':
         path = request.path.split("/")
         #path[2] is state
-        state = path[2]
+        stateName = path[2].replace("|", " ")
         #path[3] is county
-        county = path[3]
+        countyName = path[3].replace("|", " ")
         print(path)
-        print(state)
-        print(county)
-        winner = table.countyWin(state, county)[0]
-        return render_template("result.html", countyName = county, stateName = state)
+        print(stateName)
+        print(countyName)
+        winner = table.countyWin(stateName, countyName)[0]
+        return render_template("result.html", countyName = countyName, stateName = stateName, winner = winner)
     else:
         return redirect(url_for("main_page"))
 
