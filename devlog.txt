@@ -88,3 +88,10 @@ SelenaH 2023-5-10 19:52
 --------------------------------------------------------------
 - fixed bug: had to do with the spaces in the county and state names
 ==============================================================
+WanyingL 2023-5-10 20:20
+--------------------------------------------------------------
+- found a work around to the default display of graphs
+- added conditonals to change title of the 
+- Discovery: if you select a value for the dropdown, the selected value will remain even if you refresh the page.  
+But if you re-enter the address, the default (intended) value will appear.
+==============================================================
