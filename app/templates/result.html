@@ -12,26 +12,28 @@
     <h2>State Name: {{stateName}}</h2>
     <!-- add layout using bootstrap later-->
     <h3>Education Rate</h3> 
-    <p>insert graph</p>
-    <select id="education">
-        <option selected>I want a different look.</option>
-        <option value = "barGraph" selected>Bar Graph</option>
-        <option value = "Pie">Pie Graph</option>
-        <option>and more to come</option>
-    </select>
 
     <div id="chart"></div>
 
-    <h3>Unemployment Rate</h3> 
-    <p>insert graph</p>
-    <select id="unemployment">
-        <option selected>I want a different look.</option>
+    <select id="education">
+        <option selected>Choose a display.</option>
         <option value = "barGraph">Bar Graph</option>
         <option value = "Pie">Pie Graph</option>
         <option>and more to come</option>
     </select>
 
+
+    <h3>Unemployment Rate</h3> 
     <div id="chart2"></div>
+
+    <select id="unemployment">
+        <option selected>Choose a display.</option>
+        <option value = "barGraph">Bar Graph</option>
+        <option value = "Pie">Pie Graph</option>
+        <option>and more to come</option>
+    </select>
+
+
 
     <h3>Median Household Income: {{medianHouseIncome}}</h3>
     <h3>2020 Country Poverty Rate: {{CountyPovertyRate}}</h3>
