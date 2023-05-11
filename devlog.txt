@@ -102,3 +102,7 @@ SelenaH, WanyingL, SadiN, JamesY 2023-5-11 14:06
 - sadi started working on other tables in the database
 - wanying and james moving onto the bootstrap
 ==============================================================
+SelenaH 2023-5-11 18:55
+--------------------------------------------------------------
+- got rid of repeat values in answer choices
+==============================================================

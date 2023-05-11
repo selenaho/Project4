@@ -17,29 +17,27 @@ def main_page():
         #print(randState)
         #print(randCounty)
         winner = table.countyWin(randState, randCounty)[0]
-        print(winner)
+        #print(winner)
         winnerIndex = random.randint(0,3)
         choiceArray = [0] * 4
         choiceArray[winnerIndex] = winner
-        print("____")
-        print(table.getCandidates())
-        print(table.getCandidates()[0][0])
-        print(len(table.getCandidates()))
+        #print("____")
+        #print(table.getCandidates())
+        #print(table.getCandidates()[0][0])
+        #print(len(table.getCandidates()))
 
         candidateArray = table.getCandidates()
-        for i in range(len(candidateArray)-1):
-            print(candidateArray[i][0])
-            if(candidateArray[i][0] == winner):
-                candidateArray.pop(i)
-        print(candidateArray)
-        
-        #check if pop works!!!!!
+        removeRepeat(candidateArray, winner) #removes the winner from the candidate array so no repeats in mc
 
         for i in range(len(choiceArray)):
             if choiceArray[i] == 0:
-                choiceArray[i] = random.choice(table.getCandidates())[0]
-        print(choiceArray)
+                #set to a random candidate if there's not a value in the array
+                choiceArray[i] = random.choice(candidateArray)[0]
+                #remove the newly put in candidate from the array of options
+                removeRepeat(candidateArray, choiceArray[i])
+        #print(choiceArray)
 
+        #using replace to deal with the spaces in some of the county and state names
         stateNameValue = randState.replace(" ", "|")
         countyNameValue = randCounty.replace(" ", "|")
 
@@ -50,14 +48,24 @@ def main_page():
        #winner = table.countyWin(state, county)
        #print(table.countyWin(state, county))
        #print(winner)
-       print(state)
-       print(county)
+       #print(state)
+       #print(county)
        #state = state.replace(" ", "|")
        #county = county.replace(" ", "|")
-       print("________")
-       print(state)
-       print(county)
+       #print("________")
+       #print(state)
+       #print(county)
        return redirect(url_for("result", state=state, county=county))#pass through correct answer, county name, state name
+
+#function to help make sure the answer choices have no repeats
+def removeRepeat(array, choice):
+    for i in range(len(array)):
+        print(i)
+        print(array[i][0])
+        if(array[i][0] == choice):
+            array.pop(i)
+            print(array)
+            break
 
 @app.route("/result/<state>/<county>", methods=['GET', 'POST'])
 def result(state, county):
@@ -71,6 +79,11 @@ def result(state, county):
         print(stateName)
         print(countyName)
         winner = table.countyWin(stateName, countyName)[0]
+
+        #html for hidden unemployment value: <input type="hidden" name="unemploymentData" id="job_data" value={{job_data}}>
+        
+        #html for hidden education value: <input type="hidden" name="educationData" id="edu_data" value={{edu_data}}>
+
         #pass the data into the render template through here using stateName and countyName to get data first
         return render_template("result.html", countyName = countyName, stateName = stateName, winner = winner)
     else:
