@@ -106,3 +106,9 @@ SelenaH 2023-5-11 18:55
 --------------------------------------------------------------
 - got rid of repeat values in answer choices
 ==============================================================
+WanyingL 2023-5-11 19:11
+--------------------------------------------------------------
+- basic bootstrap for game.html and result.html
+- hurdle: size of google chart graphs: can not be adjusted once it's displayed
+not pretty when resizing the window
+==============================================================

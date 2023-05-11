@@ -11,23 +11,23 @@ var pick_graph = () => {
   //console.log(education.value); //gets the value of the selected option
 
   if (education.value == "Pie") {
-    edu_charts.style.height = "300px";//sets height of chart
-    edu_charts.style.width = "540px";//sets width of chart
+    //edu_charts.style.height = "300px";//sets height of chart
+    //edu_charts.style.width = "540px";//sets width of chart
     google.charts.setOnLoadCallback(draw_pie_chart(edu_charts));//draws education pie chart
   }
   if (education.value == "barGraph") {
-    edu_charts.style.height = "300px";//sets height of chart
-    edu_charts.style.width = "540px";//sets width of chart
+    //edu_charts.style.height = "300px";//sets height of chart
+    //edu_charts.style.width = "540px";//sets width of chart
     google.charts.setOnLoadCallback(draw_bar_chart(edu_charts));//draws education bar chart
   }
   if (unemployment.value == "Pie") {
-    job_charts.style.height = "300px";//sets height of chart
-    job_charts.style.width = "540px";//sets width of chart
+    //job_charts.style.height = "300px";//sets height of chart
+    //job_charts.style.width = "540px";//sets width of chart
     google.charts.setOnLoadCallback(draw_pie_chart(job_charts));//draws education bar chart
   }
   if (unemployment.value == "barGraph") {
-    job_charts.style.height = "300px";//sets height of chart
-    job_charts.style.width = "540px";//sets width of chart
+    //job_charts.style.height = "300px";//sets height of chart
+    //job_charts.style.width = "540px";//sets width of chart
     google.charts.setOnLoadCallback(draw_bar_chart(job_charts));//draws education bar chart
   }
 }
