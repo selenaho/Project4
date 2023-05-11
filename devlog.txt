@@ -95,3 +95,10 @@ WanyingL 2023-5-10 20:20
 - Discovery: if you select a value for the dropdown, the selected value will remain even if you refresh the page.  
 But if you re-enter the address, the default (intended) value will appear.
 ==============================================================
+SelenaH, WanyingL, SadiN, JamesY 2023-5-11 14:06
+--------------------------------------------------------------
+- figured out how to use render after redirect to get the data into hidden values in the result page
+- need to get rid of repeat values in the answer choices
+- sadi started working on other tables in the database
+- wanying and james moving onto the bootstrap
+==============================================================
