@@ -14,22 +14,36 @@ def main_page():
     if request.method == 'GET':
         randState = random.choice(table.getStates())
         randCounty = random.choice(table.getCountyfromState(randState))
-        print(randState)
-        print(randCounty)
+        #print(randState)
+        #print(randCounty)
         winner = table.countyWin(randState, randCounty)[0]
         print(winner)
         winnerIndex = random.randint(0,3)
-        candidateArray = [0] * 4
-        candidateArray[winnerIndex] = winner
-        for i in range(len(candidateArray)):
-            if candidateArray[i] == 0:
-                candidateArray[i] = random.choice(table.getCandidates())[0]
+        choiceArray = [0] * 4
+        choiceArray[winnerIndex] = winner
+        print("____")
+        print(table.getCandidates())
+        print(table.getCandidates()[0][0])
+        print(len(table.getCandidates()))
+
+        candidateArray = table.getCandidates()
+        for i in range(len(candidateArray)-1):
+            print(candidateArray[i][0])
+            if(candidateArray[i][0] == winner):
+                candidateArray.pop(i)
         print(candidateArray)
+        
+        #check if pop works!!!!!
+
+        for i in range(len(choiceArray)):
+            if choiceArray[i] == 0:
+                choiceArray[i] = random.choice(table.getCandidates())[0]
+        print(choiceArray)
 
         stateNameValue = randState.replace(" ", "|")
         countyNameValue = randCounty.replace(" ", "|")
 
-        return render_template("game.html", countyName = randCounty, stateName = randState, stateNameValue = stateNameValue, countyNameValue = countyNameValue, a = candidateArray[0], b = candidateArray[1], c = candidateArray[2], d = candidateArray[3], winnerIndex = winnerIndex)#pass through the four answer choices and index of the correct answer 
+        return render_template("game.html", countyName = randCounty, stateName = randState, stateNameValue = stateNameValue, countyNameValue = countyNameValue, a = choiceArray[0], b = choiceArray[1], c = choiceArray[2], d = choiceArray[3], winnerIndex = winnerIndex)#pass through the four answer choices and index of the correct answer 
     else:
        county = request.form.get("county") #gets hidden value of county name from form
        state = request.form.get("state") #gets hidden value of state name from form
@@ -57,6 +71,7 @@ def result(state, county):
         print(stateName)
         print(countyName)
         winner = table.countyWin(stateName, countyName)[0]
+        #pass the data into the render template through here using stateName and countyName to get data first
         return render_template("result.html", countyName = countyName, stateName = stateName, winner = winner)
     else:
         return redirect(url_for("main_page"))
