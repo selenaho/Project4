@@ -54,10 +54,10 @@ def loadElection():
 # Creating the table based on the first row of the csv
     cols = full[0].strip().split(",")
     # print(colsString(cols))
-    c.execute("create table if not exists PresidentElection2020(" + colsString(cols) + ");" )
+    c.execute("create table if not exists ElectionResults2020(" + colsString(cols) + ");" )
 
 # Checking if the table is empty
-    c.execute("select * from PresidentElection2020")
+    c.execute("select * from ElectionResults2020")
     empty = c.fetchone()
     # print(empty)
     if (empty == None):
@@ -66,7 +66,7 @@ def loadElection():
             if( row != full[0]):
                 line = row.strip().split(",")
                 #print(line)
-                cmd = "insert into PresidentElection2020 values(?" + (", ?" *(len(line) - 1)) + ");"
+                cmd = "insert into ElectionResults2020 values(?" + (", ?" *(len(line) - 1)) + ");"
                 #print(cmd)
                 c.execute(cmd, tuple(line))
 
