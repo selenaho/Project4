@@ -61,6 +61,11 @@ def result(state, county):
     else:
         return redirect(url_for("main_page"))
 
+@app.route("/ignoreTesting")
+def testing():
+    table.loadTableBasic("PopulationEstimates.csv", "CountyPopulation")
+    return ("Lets lookasee")
+    
 
 if __name__ == "__main__":
     app.debug = True

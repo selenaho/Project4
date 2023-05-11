@@ -26,21 +26,6 @@ def colsString(listy): #Method for turning columns into a string to build a tabl
             string += ", "
     return string
 
-def specSplit(character, string): #Split accomodating quotes
-    lst = []
-    word =""
-    quoted = False
-    for letter in string:
-        if (letter == '"'):
-            quoted = not quoted
-        if (letter == character and (not quoted)):
-            if(len(word) > 0):
-                lst.append(word)
-            word = ""
-        else:
-            word += character
-    return lst
-
 def loadElection():
 
 # Setting up database interaction
@@ -162,6 +147,38 @@ def getCountyfromState(state): #given a state, get all the counties in the state
     db.commit()
     db.close()  
     return lst   
+
+def loadTableBasic(csvName, tableName):
+# Setting up database interaction
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+# Loading up the csv
+    read = open(csvFolder + f'/{csvName}', "r")
+    full = read.readlines()
+
+# Creating the table based on the first row of the csv
+    cols = full[0].strip().split(",")
+    # print(colsString(cols))
+    c.execute("create table if not exists " + tableName + "(" + colsString(cols) + ");" )
+
+# Checking if the table is empty
+    c.execute(f"select * from {tableName}")
+    empty = c.fetchone()
+    # print(empty)
+    if (empty == None):
+#Filling out the table
+        for row in full:
+            if( row != full[0]):
+                line = row.strip().split(",")
+                #print(line)
+                cmd = "insert into " + tableName +" values(?" + (", ?" *(len(line) - 1)) + ");"
+                #print(cmd)
+                c.execute(cmd, tuple(line))
+
+    db.commit()
+    db.close()
+
 
 """
 loadElection()
