@@ -1,6 +1,7 @@
 import sqlite3
 import os
 import sys
+import re
 
 """ Sample
 database = os.getcwd() + "/../dillbickle"
@@ -179,6 +180,11 @@ def loadTableBasic(csvName, tableName):
     db.commit()
     db.close()
 
+#doesn't split commas in quotes
+Str = '0,US,United States,"Less than a high school diploma, 1970",52373312'
+newStr = re.split(r',(?=")', Str)
+
+print (newStr)
 
 """
 loadElection()
