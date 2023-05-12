@@ -128,6 +128,7 @@ def result(state, county, bool):
 @app.route("/ignoreTesting")
 def testing():
     table.loadTableBasic("PopulationEstimates.csv", "CountyPopulation")
+    table.loadTableBasic("PovertyEstimates.csv", "Poverty")
     return ("Lets lookasee")
     
 
