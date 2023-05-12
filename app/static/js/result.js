@@ -89,19 +89,34 @@ function draw_bar_chart(chart_type) {
 
 var theme = document.getElementById("theme");
 var theme_text = document.getElementById("theme_text");
-
+const mode = localStorage.getItem("mode");
+document.documentElement.setAttribute('data-bs-theme', mode);
 
 var switch_theme = () =>{
     if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
       document.documentElement.setAttribute('data-bs-theme','light')
+      localStorage.setItem("mode", "light");
       theme_text.innerHTML = "Light";
     }
     else {
-      document.documentElement.setAttribute('data-bs-theme','dark')
+      document.documentElement.setAttribute('data-bs-theme','dark');
+      localStorage.setItem("mode", "dark");
       theme_text.innerHTML = "Dark";
     }
   }
 
+var mode_label = () =>{
+  if (mode == "light"){
+    theme_text.innerHTML = 'Light';
+    
+  }
+  else{
+    theme_text.innerHTML = 'Dark';
+    theme.setAttribute("checked", "");
+  }
+} 
+
+mode_label();
 theme.addEventListener("change", switch_theme);
 //console.log(education.value);
 //console.log(unemployment.value);
