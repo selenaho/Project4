@@ -89,18 +89,18 @@ function draw_bar_chart(chart_type) {
 
 var theme = document.getElementById("theme");
 var theme_text = document.getElementById("theme_text");
-const mode = localStorage.getItem("mode");
-document.documentElement.setAttribute('data-bs-theme', mode);
+const mode = localStorage.getItem("mode");//get cookie with mode
+document.documentElement.setAttribute('data-bs-theme', mode); //makes the html remember the mode
 
 var switch_theme = () =>{
     if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
       document.documentElement.setAttribute('data-bs-theme','light')
-      localStorage.setItem("mode", "light");
+      localStorage.setItem("mode", "light");//makes cookie with mode
       theme_text.innerHTML = "Light";
     }
     else {
       document.documentElement.setAttribute('data-bs-theme','dark');
-      localStorage.setItem("mode", "dark");
+      localStorage.setItem("mode", "dark");//makes cookie with mode
       theme_text.innerHTML = "Dark";
     }
   }
@@ -118,6 +118,7 @@ var mode_label = () =>{
 
 mode_label();
 theme.addEventListener("change", switch_theme);
+
 //console.log(education.value);
 //console.log(unemployment.value);
 education.addEventListener("change", pick_graph);
