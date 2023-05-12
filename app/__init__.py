@@ -58,7 +58,7 @@ def main_page():
         #print(county)
         winnerIndex = request.form.get("winnerIndex")
         won = False
-        #validate_on_submit() method of the form returns True when the form was submitted and the data was accepted by all the field validators
+        
         print(type(winnerIndex))
         if 'a' in request.form: #if user pressed on button choice a
             print("presssed")
