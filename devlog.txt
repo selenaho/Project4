@@ -112,3 +112,8 @@ WanyingL 2023-5-11 19:11
 - hurdle: size of google chart graphs: can not be adjusted once it's displayed
 not pretty when resizing the window
 ==============================================================
+JamesY 2023-5-11 21:07
+--------------------------------------------------------------
+- made game.html prettier
+- added light/dark mode toggle
+==============================================================
