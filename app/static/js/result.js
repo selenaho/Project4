@@ -87,8 +87,9 @@ function draw_bar_chart(chart_type) {
   chart.draw(data, options);
 }
 
+
 console.log(education.value);
 console.log(unemployment.value);
-//education.addEventListener("DOMContentLoaded", pick_graph);
 education.addEventListener("change", pick_graph);
+window.onresize = pick_graph;
 unemployment.addEventListener("change", pick_graph);
