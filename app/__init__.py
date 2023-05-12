@@ -26,9 +26,21 @@ def main_page():
         #print(table.getCandidates()[0][0])
         #print(len(table.getCandidates()))
 
+        #otherIndex is the index of either Trump or Biden depending on who the winner is
+        #makes it so that Trump and Biden are always together or if there's another winner (did that happen?) then there will be at least Trump or Biden
+        otherIndex = random.randint(0,3)
+        while(otherIndex == winnerIndex):
+            otherIndex = random.randint(0,3)
+        other = "Donald Trump"
+        if(winner == "Donald Trump"):
+            other = "Joe Biden"
+        choiceArray[otherIndex] = other
+
         candidateArray = table.getCandidates()
         removeRepeat(candidateArray, winner) #removes the winner from the candidate array so no repeats in mc
+        removeRepeat(candidateArray, other) #removes the other opponent
 
+        #populating the other choices
         for i in range(len(choiceArray)):
             if choiceArray[i] == 0:
                 #set to a random candidate if there's not a value in the array

@@ -130,3 +130,7 @@ JamesY 2023-5-12 17:36
 - fixed dark mode reverting when going to a new page
 - no more pycache files
 ==============================================================
+SelenaH 2023-5-12 18:33
+--------------------------------------------------------------
+- made it so that Trump and Biden are always choices so that the game is more of a guessing game
+==============================================================
