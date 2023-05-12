@@ -45,12 +45,13 @@
     <form action="/" method="POST">
         <div class="d-grid gap-3 col-7 mx-auto">
          
-            <button id="a" class="btn btn-outline-secondary">A. {{a}}</button>
-            <button id="b" class="btn btn-outline-secondary">B. {{b}}</button>    
-            <button id="c" class="btn btn-outline-secondary">C. {{c}}</button>
-            <button id="d" class="btn btn-outline-secondary">D. {{d}}</button>
+            <button id="a" name="a" class="btn btn-outline-secondary">A. {{a}}</button>
+            <button id="b" name="b" class="btn btn-outline-secondary">B. {{b}}</button>    
+            <button id="c" name="c" class="btn btn-outline-secondary">C. {{c}}</button>
+            <button id="d" name="d" class="btn btn-outline-secondary">D. {{d}}</button>
             <input type="hidden" name="state" value={{stateNameValue}}>
-            <input type="hidden" name="county" value={{countyNameValue}}>  
+            <input type="hidden" name="county" value={{countyNameValue}}> 
+            <input type="hidden" name="winnerIndex" value={{winnerIndex}} 
         
         </div>      
     </form>
@@ -60,3 +61,4 @@
     <script src="../static/js/game.js"></script>
 </body>
 </html>
+

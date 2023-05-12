@@ -117,3 +117,7 @@ JamesY 2023-5-11 21:07
 - made game.html prettier
 - added light/dark mode toggle
 ==============================================================
+SelenaH 2023-5-11 21:40
+--------------------------------------------------------------
+- result message pops up depending on the user's choice and whether or not they're correct
+==============================================================
