@@ -277,6 +277,7 @@ def getUnemployment(state, county):
     # Setting up database interaction
     db = sqlite3.connect(database)
     c = db.cursor()
+    countyin = county + ", " + states[state]
 
     cmd = "select * from UnemploymentAndIncome where State=? and Area=?"
     c.execute(cmd, (states[state], county))
