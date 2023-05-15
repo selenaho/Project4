@@ -302,7 +302,7 @@ def getPoverty(state, county):
     for row in something:
         if ("POVALL_2020" in row or "PCTPOVALL_2020" in row):
             lst.append(row)
-    return lst
+    return something
 
 loadElection()
 loadTableBasic("PopulationEstimates.csv", "CountyPopulation")
