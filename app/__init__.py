@@ -128,6 +128,19 @@ def result(state, county, bool):
             message = random.choice(loseMessages)
         
         winner = table.countyWin(stateName, countyName)[0]
+
+        unemployment = table.getUnemployment(stateName, countyName)
+        print(stateName)
+        print(countyName)
+        print("unemployment:")
+        print(unemployment)
+
+        poverty = table.getPoverty(stateName, countyName)
+        print(poverty)
+
+        education = table.getEducation(stateName, countyName)
+
+
         #html for hidden unemployment value: <input type="hidden" name="unemploymentData" id="job_data" value={{job_data}}>
 
         #html for hidden education value: <input type="hidden" name="educationData" id="edu_data" value={{edu_data}}>
