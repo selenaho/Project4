@@ -140,3 +140,7 @@ SadiN 2023-5-15 03:49
 - stored new tables in database
 - basic commands for getting some data from tables
 ==============================================================
+JamesY, WanyingL 2023-5-15 14:05
+--------------------------------------------------------------
+- the answer choice buttons and the next button now change color when in light/dark mode
+==============================================================
