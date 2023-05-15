@@ -134,3 +134,9 @@ SelenaH 2023-5-12 18:33
 --------------------------------------------------------------
 - made it so that Trump and Biden are always choices so that the game is more of a guessing game
 ==============================================================
+SadiN 2023-5-15 03:49
+--------------------------------------------------------------
+- made new split to ignore commas in quotes
+- stored new tables in database
+- basic commands for getting some data from tables
+==============================================================
