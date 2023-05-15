@@ -285,7 +285,7 @@ def getUnemployment(state, county):
     countyin = county + ", " + states[state]
 
     cmd = "select * from UnemploymentAndIncome where State=? and Area=?"
-    c.execute(cmd, (states[state], county))
+    c.execute(cmd, (states[state], countyin))
 
     return c.fetchall()
 
@@ -302,7 +302,7 @@ def getPoverty(state, county):
     for row in something:
         if ("POVALL_2020" in something or "PCTPOVALL_2020" in something):
             lst.append(row)
-    return lst
+    return something
 
 loadElection()
 loadTableBasic("PopulationEstimates.csv", "CountyPopulation")
