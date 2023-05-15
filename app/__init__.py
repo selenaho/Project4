@@ -129,24 +129,44 @@ def result(state, county, bool):
         
         winner = table.countyWin(stateName, countyName)[0]
 
-        unemployment = table.getUnemployment(stateName, countyName)
-        print(stateName)
-        print(countyName)
-        print("unemployment:")
-        print(unemployment)
+        # unemployment = table.getUnemployment(stateName, countyName)
+        # print(stateName)
+        # print(countyName)
+        # print("unemployment:")
+        # print(unemployment)
 
+        #poverty section
         poverty = table.getPoverty(stateName, countyName)
         print(poverty)
+        countyPercentPovAll = poverty[1][4]
+        print(countyPercentPovAll)
+        countyMedianHHIncome = poverty[2][4]
+        print(countyMedianHHIncome)
 
-        education = table.getEducation(stateName, countyName)
+        print(table.getPoverty("Connecticut", "Madison"))
+
+        statePov = table.getPoverty(stateName, stateName)
+        print(statePov)
+        statePovRate = statePov[1][4]
+        print(statePovRate)
+
+        USPov = table.getPoverty("United States", "United States")
+        print(USPov)
+        USPovRate = USPov[1][4]
+        print(USPovRate)
+        USMedianHHIncome = USPov[2][4]
+
+        # education = table.getEducation(stateName, countyName)
+        # print(education)
 
 
+        
         #html for hidden unemployment value: <input type="hidden" name="unemploymentData" id="job_data" value={{job_data}}>
 
         #html for hidden education value: <input type="hidden" name="educationData" id="edu_data" value={{edu_data}}>
 
         #pass the data into the render template through here using stateName and countyName to get data first
-        return render_template("result.html", countyName = countyName, stateName = stateName, winner = winner, message=message)
+        return render_template("result.html", countyName = countyName, stateName = stateName, winner = winner, message=message, CountyPovertyRate = countyPercentPovAll, medianHouseIncome = countyMedianHHIncome, StatePovertyRate = statePovRate, USPovertyRate = USPovRate, USMedianHouseIncome = USMedianHHIncome)
     else:
         return redirect(url_for("main_page"))
 
