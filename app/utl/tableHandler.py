@@ -27,6 +27,25 @@ def colsString(listy): #Method for turning columns into a string to build a tabl
             string += ", "
     return string
 
+def splitSplit( source, splitter):
+    lst = []
+    word = ""
+    quoting = False
+    for i in range(len(source)):
+        if (source[i] == '"'):
+            quoting = not quoting
+            continue
+        if (not quoting and (source[i] != ',')):
+            word += source[i]
+        elif (not quoting and (source[i] == ',')):
+            lst.append(word)
+            word = ''
+        elif (quoting):
+            word += source[i]
+    if (len(word) > 0):
+        lst.append(word)
+    return lst
+
 def loadElection():
 
 # Setting up database interaction
@@ -171,7 +190,7 @@ def loadTableBasic(csvName, tableName):
 #Filling out the table
         for row in full:
             if( row != full[0]):
-                line = row.strip().split(",")
+                line = splitSplit(row.strip(), '"')
                 #print(line)
                 cmd = "insert into " + tableName +" values(?" + (", ?" *(len(line) - 1)) + ");"
                 #print(cmd)
@@ -180,15 +199,13 @@ def loadTableBasic(csvName, tableName):
     db.commit()
     db.close()
 
-#doesn't split commas in quotes
-Str = '0,US,United States,"Less than a high school diploma, 1970",52373312'
-newStr = re.split(r',(?=")', Str)
-
-print (newStr)
+loadElection()
+loadTableBasic("PopulationEstimates.csv", "CountyPopulation")
+loadTableBasic("PovertyEstimates.csv", "Poverty")
+loadTableBasic("Education.csv", "Education")
+loadTableBasic("Unemployment.csv", "UnemploymentAndIncome")
 
 """
-loadElection()
-
 print(countyVoting("New Jersey", "Sussex County"))
 print(getCounties())
 print("\n\n")

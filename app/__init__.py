@@ -141,6 +141,8 @@ def result(state, county, bool):
 def testing():
     table.loadTableBasic("PopulationEstimates.csv", "CountyPopulation")
     table.loadTableBasic("PovertyEstimates.csv", "Poverty")
+    table.loadTableBasic("Education.csv", "Education")
+    table.loadTableBasic("Unemployment.csv", "UnemploymentAndIncome")
     return ("Lets lookasee")
     
 
