@@ -261,7 +261,12 @@ def getEducation(state, county):
     cmd = "select * from Education where State=? and Area=?"
     c.execute(cmd, (states[state], county))
 
-    return c.fetchall()
+    splurge = c.fetchall()
+    lst = []
+    for result in splurge:
+    	if ("2017-21" in result[3]):
+    		lst.append(result)
+    return lst
 
 def getPopulation(state, county):
     # Setting up database interaction
