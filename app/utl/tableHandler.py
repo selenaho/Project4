@@ -258,7 +258,7 @@ def getEducation(state, county):
     db = sqlite3.connect(database)
     c = db.cursor()
 
-    cmd = "select * from Education where state=? and county=?"
+    cmd = "select * from Education where State=? and Area=?"
     c.execute(cmd, (states[state], county))
 
     return c.fetchall()
@@ -268,27 +268,27 @@ def getPopulation(state, county):
     db = sqlite3.connect(database)
     c = db.cursor()
 
-    cmd = "select * from CountyPopulation where state=? and county=?"
+    cmd = "select * from CountyPopulation where State=? and Area=?"
     c.execute(cmd, (states[state], county))
 
     return c.fetchall()
 
-def getUnemplyment(state, county):
+def getUnemployment(state, county):
     # Setting up database interaction
     db = sqlite3.connect(database)
     c = db.cursor()
 
-    cmd = "select * from UnemploymentAndIncome where state=? and county=?"
+    cmd = "select * from UnemploymentAndIncome where State=? and Area=?"
     c.execute(cmd, (states[state], county))
 
     return c.fetchall()
 
-def getPovert(state, county):
+def getPoverty(state, county):
     # Setting up database interaction
     db = sqlite3.connect(database)
     c = db.cursor()
 
-    cmd = "select * from Poverty where state=? and county=?"
+    cmd = "select * from Poverty where State=? and Area=?"
     c.execute(cmd, (states[state], county))
 
     something = c.fetchall()
