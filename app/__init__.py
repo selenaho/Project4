@@ -143,6 +143,7 @@ def result(state, county, bool):
         countyMedianHHIncome = poverty[2][4]
         print(countyMedianHHIncome)
 
+        print("Connecticut:")
         print(table.getPoverty("Connecticut", "Madison"))
 
         statePov = table.getPoverty(stateName, stateName)
