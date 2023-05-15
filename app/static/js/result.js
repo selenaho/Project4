@@ -39,12 +39,12 @@ var draw_pie_chart = (chart_type) => {
   if (chart_type.id == "edu_chart") {
     var options = {
       title: 'Education Rate' //title of chart
-    };
+    }
   }
   if (chart_type.id == "job_chart") {
     var options = {
       title: 'Unemployment Rate' //title of chart
-    };
+    }
   }
 
   var data = google.visualization.arrayToDataTable([
@@ -77,13 +77,13 @@ function draw_bar_chart(chart_type) {
     var options = {
       title: 'Education Rate' //title of chart
     };
-  };
+  }
   if (chart_type.id == "job_chart") {
     var options = {
       title: 'Unemployment Rate' //title of chart
-      };
+      }
 
-  };
+  }
 
   var chart = new google.visualization.ColumnChart(chart_type);
   chart.draw(data, options);
@@ -99,7 +99,7 @@ var switch_theme = () =>{
       button_B.className = "btn btn-outline-dark";
       button_C.className = "btn btn-outline-dark";
       button_D.className = "btn btn-outline-dark";
-     // next.className = "btn btn-dark m-3";
+      next.className = "btn btn-dark m-3";
     }
     else {
       document.documentElement.setAttribute('data-bs-theme','dark');
@@ -109,7 +109,7 @@ var switch_theme = () =>{
       button_B.className = "btn btn-outline-warning";
       button_C.className = "btn btn-outline-warning";
       button_D.className = "btn btn-outline-warning";
-      //next.className = "btn btn-warning m-3";
+      next.className = "btn btn-warning m-3";
     }
   }
 
@@ -121,7 +121,7 @@ var mode_label = () =>{
     button_B.className = "btn btn-outline-dark";
     button_C.className = "btn btn-outline-dark";
     button_D.className = "btn btn-outline-dark";
-   // next.className = "btn btn-dark m-3";
+    next.className = "btn btn-dark m-3";
   }
   else{
     theme_text.innerHTML = 'Dark';
@@ -130,10 +130,11 @@ var mode_label = () =>{
     button_B.className = "btn btn-outline-warning";
     button_C.className = "btn btn-outline-warning";
     button_D.className = "btn btn-outline-warning";
-   // next.className = "btn btn-warning m-3";
+    next.className = "btn btn-warning m-3";
   }
 } 
 
+console.log(window.location.pathname);
 mode_label();
 theme.addEventListener("change", switch_theme);
 
