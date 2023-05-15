@@ -46,6 +46,60 @@ def splitSplit( source, splitter):
         lst.append(word)
     return lst
 
+states = {
+    "Alabama":"AL",
+    "Alaska": "AK",
+    "Arizona": "AZ",
+    "Arkansas": "AR",
+    "California": "CA",
+    "Colorado": "CO",
+    "Connecticut": "CT",
+    "Delaware": "DE",
+    "District of Columbia": "DC",
+    "Florida": "FL",
+    "Georgia": "GA",
+    "Hawaii": "HI",
+    "Idaho": "ID",
+    "Illinois": "IL",
+    "Indiana": "ID",
+    "Iowa": "IA",
+    "Kansas": "KS",
+    "Kentucky": "KY",
+    "Louisiana": "LA",
+    "Maine": "ME",
+    "Maryland": "MD",
+    "Massachussetts": "MA",
+    "Michigan": "MI",
+    "Minnesota": "MS",
+    "Missouri": "MO",
+    "Montana": "MT",
+    "Nebraska": "NE",
+    "Nevada": "NV",
+    "New Hampshire": "NH",
+    "New Jersey": "NJ",
+    "New Mexico": "NM",
+    "New York": "NY",
+    "North Carolina": "NC",
+    "North Dakota": "ND",
+    "Ohio": "OH",
+    "Oklahoma": "OK",
+    "Oregon": "OR",
+    "Pennsylvania": "PA",
+    "Rhode Island": "RI",
+    "South Carolina": "SC",
+    "South Dakota": "SD",
+    "Tennessee": "TN", 
+    "Texas": "TX",
+    "Utah": "UT",
+    "Vermont": "VT",
+    "Virginia": "VA",
+    "Washington": "WA",
+    "West Virginia": "WV",
+    "Wisconsin": "WI",
+    "Wyoming": "WY",
+    "United States": "US"
+}
+
 def loadElection():
 
 # Setting up database interaction
@@ -198,6 +252,51 @@ def loadTableBasic(csvName, tableName):
 
     db.commit()
     db.close()
+
+def getEducation(state, county):
+    # Setting up database interaction
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    cmd = "select * from Education where state=? and county=?"
+    c.execute(cmd, (states[state], county))
+
+    return c.fetchall()
+
+def getPopulation(state, county):
+    # Setting up database interaction
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    cmd = "select * from CountyPopulation where state=? and county=?"
+    c.execute(cmd, (states[state], county))
+
+    return c.fetchall()
+
+def getUnemplyment(state, county):
+    # Setting up database interaction
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    cmd = "select * from UnemploymentAndIncome where state=? and county=?"
+    c.execute(cmd, (states[state], county))
+
+    return c.fetchall()
+
+def getPovert(state, county):
+    # Setting up database interaction
+    db = sqlite3.connect(database)
+    c = db.cursor()
+
+    cmd = "select * from Poverty where state=? and county=?"
+    c.execute(cmd, (states[state], county))
+
+    something = c.fetchall()
+    lst = []
+    for row in something:
+        if ("POVALL_2020" in something or "PCTPOVALL_2020" in something):
+            lst.append(row)
+    return lst
 
 loadElection()
 loadTableBasic("PopulationEstimates.csv", "CountyPopulation")
