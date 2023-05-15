@@ -68,7 +68,7 @@ states = {
     "Louisiana": "LA",
     "Maine": "ME",
     "Maryland": "MD",
-    "Massachussetts": "MA",
+    "Massachusetts": "MA",
     "Michigan": "MI",
     "Minnesota": "MS",
     "Missouri": "MO",
