@@ -13,14 +13,16 @@
 </head>
 
 <body>
+
     <div class="row justify-content-end">
         <div class="col-1">
-        <div class="form-check form-switch">
-            <input class="form-check-input float-right" type="checkbox" role="switch" id="theme"></input>
-            <label id="theme_text" for="theme" class="form-check-label"></label>
-        </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input float-right" type="checkbox" role="switch" id="theme"></input>
+                <label id="theme_text" for="theme" class="form-check-label"></label>
+            </div>
         </div>
     </div>
+
     <div class="container-fluid text-center m-5">
         <h1>{{message}}</h1>
         <h2>County Name: {{countyName}}</h2>
@@ -40,8 +42,8 @@
                         <option value="Pie">Pie Graph</option>
                         <option>and more to come</option>
                     </select>
-                    <input type="hidden" name="educationData" id="edu_data" value={{edu_data}}>
-                    <p hidden>{{edu_data}}</p>
+                    <!--<input type="hidden" name="educationData" id="edu_data" value={{edu_data}}>-->
+                    <p id="edu_data" hidden>{{edu_data}}</p>
                 </div>
             </div>
             <div class="col-sm-6">

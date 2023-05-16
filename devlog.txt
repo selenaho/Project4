@@ -150,3 +150,8 @@ SelenaH 2023-5-15 21:17
 - need to fix the president_county_candidate data bc sometimes it has info on towns and not counties (thinking of replacing the data w correct data)
 - sent the data for education to a hidden paragraph tag instead of into the value of hidden input bc doing the value messes up how the data is sent and doesn't preserve spaces and things like that
 ==============================================================
+WanyingL 2023-5-15 22:27
+--------------------------------------------------------------
+- attempted to used data from flask to draw a chart but failed
+- value passed is a string...might need a method to process the string and turn it into an array
+==============================================================

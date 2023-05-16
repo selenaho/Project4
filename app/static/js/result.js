@@ -1,22 +1,29 @@
-console.log("AAAAAAA");
-google.charts.load('current', { 'packages': ['corechart'] });
-
-var education = document.getElementById("education");//education dropdown
-var unemployment = document.getElementById("unemployment");//unemployment dropdown
-var edu_charts = document.getElementById('edu_chart');//education chart div
-var job_charts = document.getElementById('job_chart');//unemployment chart div
-
+// light vs dark mode
 var theme = document.getElementById("theme");
 var theme_text = document.getElementById("theme_text");
 const mode = localStorage.getItem("mode");//get cookie with mode
 document.documentElement.setAttribute('data-bs-theme', mode); //makes the html remember the mode
 
+// button handling
+var button_A = document.getElementById("a");
+var button_B = document.getElementById("b");
+var button_C = document.getElementById("c");
+var button_D = document.getElementById("d");
+var next = document.getElementById("next");
 
-var button_A = document.getElementById("a");  
-var button_B = document.getElementById("b");  
-var button_C = document.getElementById("c");  
-var button_D = document.getElementById("d"); 
-var next = document.getElementById("next"); 
+google.charts.load('current', { 'packages': ['corechart'] });
+
+// two charts
+var education = document.getElementById("education");//education dropdown
+var unemployment = document.getElementById("unemployment");//unemployment dropdown
+var edu_charts = document.getElementById('edu_chart');//education chart div
+var job_charts = document.getElementById('job_chart');//unemployment chart div
+
+// get data for charts
+var edu_data = document.getElementById("edu_data");
+console.log(typeof edu_data.innerText)
+let edu_string = edu_data.innerText
+//var job_data = document.getElementById("job_data");
 
 var pick_graph = () => {
   if (education.value == "Pie") {
@@ -31,7 +38,7 @@ var pick_graph = () => {
   if (unemployment.value == "barGraph") {
     google.charts.setOnLoadCallback(draw_bar_chart(job_charts));//draws education bar chart
   }
-}
+};
 
 var draw_pie_chart = (chart_type) => {
 
@@ -60,18 +67,21 @@ var draw_pie_chart = (chart_type) => {
   var chart = new google.visualization.PieChart(chart_type);
 
   chart.draw(data, options);
-}
+};
 
 function draw_bar_chart(chart_type) {
 
-  var data = google.visualization.arrayToDataTable([
-    ['Year', 'Asia'],
-    ['2012', 900],
-    ['2013', 1000],
-    ['2014', 1170],
-    ['2015', 1250],
-    ['2016', 1530]
-  ]);
+  var data = google.visualization.arrayToDataTable(
+  //   [
+  //   ['Year', 'Asia'],
+  //   ['2012', 900],
+  //   ['2013', 1000],
+  //   ['2014', 1170],
+  //   ['2015', 1250],
+  //   ['2016', 1530]
+  // ]
+  edu_data.innerText
+  );
 
   if (chart_type.id == "edu_chart") {
     var options = {
@@ -81,41 +91,41 @@ function draw_bar_chart(chart_type) {
   if (chart_type.id == "job_chart") {
     var options = {
       title: 'Unemployment Rate' //title of chart
-      }
+    }
 
   }
 
   var chart = new google.visualization.ColumnChart(chart_type);
   chart.draw(data, options);
-}
+};
 
 
-var switch_theme = () =>{
-    if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
-      document.documentElement.setAttribute('data-bs-theme','light')
-      localStorage.setItem("mode", "light");//makes cookie with mode
-      theme_text.innerHTML = "Light";
-      button_A.className = "btn btn-outline-dark";
-      button_B.className = "btn btn-outline-dark";
-      button_C.className = "btn btn-outline-dark";
-      button_D.className = "btn btn-outline-dark";
-      next.className = "btn btn-dark m-3";
-    }
-    else {
-      document.documentElement.setAttribute('data-bs-theme','dark');
-      localStorage.setItem("mode", "dark");//makes cookie with mode
-      theme_text.innerHTML = "Dark";
-      button_A.className = "btn btn-outline-warning";
-      button_B.className = "btn btn-outline-warning";
-      button_C.className = "btn btn-outline-warning";
-      button_D.className = "btn btn-outline-warning";
-      next.className = "btn btn-warning m-3";
-    }
+var switch_theme = () => {
+  if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+    document.documentElement.setAttribute('data-bs-theme', 'light')
+    localStorage.setItem("mode", "light");//makes cookie with mode
+    theme_text.innerHTML = "Light";
+    button_A.className = "btn btn-outline-dark";
+    button_B.className = "btn btn-outline-dark";
+    button_C.className = "btn btn-outline-dark";
+    button_D.className = "btn btn-outline-dark";
+    next.className = "btn btn-dark m-3";
   }
+  else {
+    document.documentElement.setAttribute('data-bs-theme', 'dark');
+    localStorage.setItem("mode", "dark");//makes cookie with mode
+    theme_text.innerHTML = "Dark";
+    button_A.className = "btn btn-outline-warning";
+    button_B.className = "btn btn-outline-warning";
+    button_C.className = "btn btn-outline-warning";
+    button_D.className = "btn btn-outline-warning";
+    next.className = "btn btn-warning m-3";
+  }
+};
 
 
-var mode_label = () =>{
-  if (mode == "light"){
+var mode_label = () => {
+  if (mode == "light") {
     theme_text.innerHTML = 'Light';
     button_A.className = "btn btn-outline-dark";
     button_B.className = "btn btn-outline-dark";
@@ -123,7 +133,7 @@ var mode_label = () =>{
     button_D.className = "btn btn-outline-dark";
     next.className = "btn btn-dark m-3";
   }
-  else{
+  else {
     theme_text.innerHTML = 'Dark';
     theme.setAttribute("checked", "");
     button_A.className = "btn btn-outline-warning";
@@ -132,7 +142,7 @@ var mode_label = () =>{
     button_D.className = "btn btn-outline-warning";
     next.className = "btn btn-warning m-3";
   }
-} 
+};
 
 console.log(window.location.pathname);
 mode_label();
