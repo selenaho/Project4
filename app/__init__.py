@@ -167,8 +167,8 @@ def result(state, county, bool):
 
         educationArray = []
         for i in range(len(education)):
-            array = [education[i][3], education[i][4]]
-            educationArray.append(array)
+            dataTuple = (education[i][3], education[i][4])
+            educationArray.append(dataTuple)
         print(educationArray)
         
         #html for hidden unemployment value: <input type="hidden" name="unemploymentData" id="job_data" value={{job_data}}>
