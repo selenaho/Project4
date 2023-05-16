@@ -288,7 +288,19 @@ def getUnemployment(state, county):
     cmd = "select * from UnemploymentAndIncome where State=? and Area=?"
     c.execute(cmd, (states[state], countyin))
 
-    return c.fetchall()
+    something = c.fetchall()
+    lst = []
+    for row in something:
+        if ("Unemployment_rate_2000" in row[3] \
+        or "Unemployment_rate_2004" in row[3] \
+        or "Unemployment_rate_2008" in row[3] \
+        or "Unemployment_rate_2012" in row[3] \
+        or "Unemployment_rate_2016" in row[3] \
+        or "Unemployment_rate_2020" in row[3] \
+        or "Employed_2020" in row[3] \
+        or "Unemployed_2020" in row[3]):
+            lst.append(row)
+    return lst
 
 def getPoverty(state, county):
     # Setting up database interaction
