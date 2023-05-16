@@ -169,16 +169,29 @@ def result(state, county, bool):
         for i in range(len(education)):
             dataTuple = (education[i][3], education[i][4])
             educationArray.append(dataTuple)
+        print("EDUCATION")
         print(educationArray)
 
-        
-        
-        #html for hidden unemployment value: <input type="hidden" name="unemploymentData" id="job_data" value={{job_data}}>
-
-        #html for hidden education value: <input type="hidden" name="educationData" id="edu_data" value={{edu_data}}>
-
         #pass the data into the render template through here using stateName and countyName to get data first
-        return render_template("result.html", countyName = countyName, stateName = stateName, winner = winner, message=message, CountyPovertyRate = countyPercentPovAll, medianHouseIncome = countyMedianHHIncome, StatePovertyRate = statePovRate, USPovertyRate = USPovRate, USMedianHouseIncome = USMedianHHIncome, edu_data = educationArray)
+        return render_template("result.html",\
+        countyName = countyName, \
+        stateName = stateName, \
+        winner = winner, \
+        message=message, \
+        CountyPovertyRate = countyPercentPovAll, \
+        medianHouseIncome = countyMedianHHIncome, \
+        StatePovertyRate = statePovRate, \
+        USPovertyRate = USPovRate, \
+        USMedianHouseIncome = USMedianHHIncome, \
+        edu_data = educationArray,\
+        edu0 = educationArray[0][1], \
+        edu1 = educationArray[1][1], \
+        edu2 = educationArray[2][1], \
+        edu3 = educationArray[3][1], \
+        edu4 = educationArray[4][1], \
+        edu5 = educationArray[5][1], \
+        edu6 = educationArray[6][1], \
+        edu7 = educationArray[7][1])
     else:
         return redirect(url_for("main_page"))
 

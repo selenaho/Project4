@@ -155,3 +155,13 @@ WanyingL 2023-5-15 22:27
 - attempted to used data from flask to draw a chart but failed
 - value passed is a string...might need a method to process the string and turn it into an array
 ==============================================================
+SelenaH, WanyingL, JamesY, SadiN 2023-5-16 14:06
+--------------------------------------------------------------
+- continued working on how we want to send data from flask to js decided on multiple hidden paragraphs instead of just one
+- trying to figure out how to fix president_county_candidate issue 
+- figured out the specific pieces of data we want from unemployment and how it'll be displayed
+==============================================================
+SelenaH 2023-5-16 18:03
+--------------------------------------------------------------
+- sent data for education to js
+==============================================================
