@@ -11,6 +11,18 @@ var button_C = document.getElementById("c");
 var button_D = document.getElementById("d");
 var next = document.getElementById("next");
 
+//gets education data
+var edu0 = document.getElementById("edu0");
+var edu1 = document.getElementById("edu1");
+var edu2 = document.getElementById("edu2");
+var edu3 = document.getElementById("edu3");
+var edu4 = document.getElementById("edu4");
+var edu5 = document.getElementById("edu5");
+var edu6 = document.getElementById("edu6");
+var edu7 = document.getElementById("edu7");
+
+var edu_data = new google.visualization.DataTable();
+
 google.charts.load('current', { 'packages': ['corechart'] });
 
 // two charts
@@ -20,9 +32,9 @@ var edu_charts = document.getElementById('edu_chart');//education chart div
 var job_charts = document.getElementById('job_chart');//unemployment chart div
 
 // get data for charts
-var edu_data = document.getElementById("edu_data");
-console.log(typeof edu_data.innerText)
-let edu_string = edu_data.innerText
+//var edu_data = document.getElementById("edu_data");
+//console.log(typeof edu_data.innerText)
+//let edu_string = edu_data.innerText
 //var job_data = document.getElementById("job_data");
 
 var pick_graph = () => {
@@ -143,6 +155,10 @@ var mode_label = () => {
     next.className = "btn btn-warning m-3";
   }
 };
+
+var make_table = () =>{
+  edu_data.addColumn()
+}
 
 console.log(window.location.pathname);
 mode_label();
