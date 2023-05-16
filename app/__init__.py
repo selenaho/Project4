@@ -129,11 +129,11 @@ def result(state, county, bool):
         
         winner = table.countyWin(stateName, countyName)[0]
 
-        # unemployment = table.getUnemployment(stateName, countyName)
-        # print(stateName)
-        # print(countyName)
-        # print("unemployment:")
-        # print(unemployment)
+        unemployment = table.getUnemployment(stateName, countyName)
+        print(stateName)
+        print(countyName)
+        print("unemployment:")
+        print(unemployment)
 
         #poverty section
         poverty = table.getPoverty(stateName, countyName)
@@ -170,6 +170,8 @@ def result(state, county, bool):
             dataTuple = (education[i][3], education[i][4])
             educationArray.append(dataTuple)
         print(educationArray)
+
+        
         
         #html for hidden unemployment value: <input type="hidden" name="unemploymentData" id="job_data" value={{job_data}}>
 
