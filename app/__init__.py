@@ -71,13 +71,13 @@ def main_page():
         winnerIndex = request.form.get("winnerIndex")
         won = False
         
-        print(type(winnerIndex))
+        #print(type(winnerIndex))
         if 'a' in request.form: #if user pressed on button choice a
-            print("presssed")
-            print(winnerIndex)
+            #print("presssed")
+            #print(winnerIndex)
             
             if winnerIndex == "0":
-                print("0 yup")
+                #print("0 yup")
                 won = True
         elif 'b' in request.form:
             if winnerIndex == "1":
@@ -88,7 +88,7 @@ def main_page():
         elif 'd' in request.form:
             if winnerIndex == "3":
                 won = True
-        print(won)
+        #print(won)
         if won:
             bool="y"
         else:
@@ -98,11 +98,11 @@ def main_page():
 #function to help make sure the answer choices have no repeats
 def removeRepeat(array, choice):
     for i in range(len(array)):
-        print(i)
-        print(array[i][0])
+        #print(i)
+        #print(array[i][0])
         if(array[i][0] == choice):
             array.pop(i)
-            print(array)
+            #print(array)
             break
 
 @app.route("/result/<state>/<county>/<bool>", methods=['GET', 'POST'])
@@ -113,7 +113,7 @@ def result(state, county, bool):
         stateName = path[2].replace("|", " ")
         #path[3] is county
         countyName = path[3].replace("|", " ")
-        print(path)
+        #print(path)
         #print(stateName)
         #print(countyName)
         
@@ -138,13 +138,16 @@ def result(state, county, bool):
         #poverty section
         poverty = table.getPoverty(stateName, countyName)
         print(poverty)
+        
         countyPercentPovAll = poverty[1][4]
         print(countyPercentPovAll)
         countyMedianHHIncome = poverty[2][4]
         print(countyMedianHHIncome)
 
-        print("Connecticut:")
-        print(table.getPoverty("Connecticut", "Madison"))
+        #print("Connecticut:")
+        #print(table.getPoverty("Connecticut", "Madison"))
+        #NEED TO ADD SMTH TO HANDLE CASES LIKE THIS WHERE MADISONE EXISTS IN ONE TABLE AND NOT THE OTHER
+        #ALSO COUNTIES NAMED DIFFERENTLY IN ALASKA
 
         statePov = table.getPoverty(stateName, stateName)
         print(statePov)
@@ -157,17 +160,23 @@ def result(state, county, bool):
         print(USPovRate)
         USMedianHHIncome = USPov[2][4]
 
-        # education = table.getEducation(stateName, countyName)
-        # print(education)
+        education = table.getEducation(stateName, countyName)
+        print(education)
 
+        #[('39085', 'OH', 'Lake County', 'Less than a high school diploma, 2017-21', '11693'), ('39085', 'OH', 'Lake County', 'High school diploma only, 2017-21', '52584'), ('39085', 'OH', 'Lake County', "Some college or associate's degree, 2017-21", '55194'), ('39085', 'OH', 'Lake County', "Bachelor's degree or higher, 2017-21", '48445'), ('39085', 'OH', 'Lake County', 'Percent of adults with less than a high school diploma, 2017-21', '6.963600848'), ('39085', 'OH', 'Lake County', 'Percent of adults with a high school diploma only, 2017-21', '31.31565783'), ('39085', 'OH', 'Lake County', "Percent of adults completing some college or associate's degree, 2017-21", '32.87000643'), ('39085', 'OH', 'Lake County', "Percent of adults with a bachelor's degree or higher, 2017-21", '28.85073489')]
 
+        educationArray = []
+        for i in range(len(education)):
+            array = [education[i][3], education[i][4]]
+            educationArray.append(array)
+        print(educationArray)
         
         #html for hidden unemployment value: <input type="hidden" name="unemploymentData" id="job_data" value={{job_data}}>
 
         #html for hidden education value: <input type="hidden" name="educationData" id="edu_data" value={{edu_data}}>
 
         #pass the data into the render template through here using stateName and countyName to get data first
-        return render_template("result.html", countyName = countyName, stateName = stateName, winner = winner, message=message, CountyPovertyRate = countyPercentPovAll, medianHouseIncome = countyMedianHHIncome, StatePovertyRate = statePovRate, USPovertyRate = USPovRate, USMedianHouseIncome = USMedianHHIncome)
+        return render_template("result.html", countyName = countyName, stateName = stateName, winner = winner, message=message, CountyPovertyRate = countyPercentPovAll, medianHouseIncome = countyMedianHHIncome, StatePovertyRate = statePovRate, USPovertyRate = USPovRate, USMedianHouseIncome = USMedianHHIncome, edu_data = educationArray)
     else:
         return redirect(url_for("main_page"))
 

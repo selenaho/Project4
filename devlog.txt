@@ -144,3 +144,9 @@ JamesY, WanyingL 2023-5-15 14:05
 --------------------------------------------------------------
 - the answer choice buttons and the next button now change color when in light/dark mode
 ==============================================================
+SelenaH 2023-5-15 21:17
+--------------------------------------------------------------
+- flask for passing non graph data to result page
+- need to fix the president_county_candidate data bc sometimes it has info on towns and not counties (thinking of replacing the data w correct data)
+- sent the data for education to a hidden paragraph tag instead of into the value of hidden input bc doing the value messes up how the data is sent and doesn't preserve spaces and things like that
+==============================================================
