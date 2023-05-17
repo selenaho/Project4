@@ -1,48 +1,11 @@
-// light vs dark mode
-var theme = document.getElementById("theme");
-var theme_text = document.getElementById("theme_text");
-const mode = localStorage.getItem("mode");//get cookie with mode
-document.documentElement.setAttribute('data-bs-theme', mode); //makes the html remember the mode
-
-// button handling
-var button_A = document.getElementById("a");
-var button_B = document.getElementById("b");
-var button_C = document.getElementById("c");
-var button_D = document.getElementById("d");
-var next = document.getElementById("next");
-
-//gets education data
-var edu0 = document.getElementById("edu0");
-var edu1 = document.getElementById("edu1");
-var edu2 = document.getElementById("edu2");
-var edu3 = document.getElementById("edu3");
-var edu4 = document.getElementById("edu4");
-var edu5 = document.getElementById("edu5");
-var edu6 = document.getElementById("edu6");
-var edu7 = document.getElementById("edu7");
-
-google.charts.load('current', { 'packages': ['corechart'] });
-
-/*var edu_data = new google.visualization.DataTable();
-edu_data.addColumn('string', 'Employee Name');
-edu_data.addColumn('integer', 'Start Date');
-edu_data.addRows(6);
-edu_data.setCell(0, 0, 'Mike');
-edu_data.setCell(0, 0, 1);*/
-
-// two charts
+// charts
 var education = document.getElementById("education");//education dropdown
 var unemployment = document.getElementById("unemployment");//unemployment dropdown
 var edu_charts = document.getElementById('edu_chart');//education chart div
 var job_charts = document.getElementById('job_chart');//unemployment chart div
 
-// get data for charts
-//var edu_data = document.getElementById("edu_data");
-//console.log(typeof edu_data.innerText)
-//let edu_string = edu_data.innerText
-//var job_data = document.getElementById("job_data");
-
-//console.log(document.getElementById("edu7").innerText)
+// chart making functions--------------------------------------------------------------
+google.charts.load('current', { 'packages': ['corechart'] });
 
 var pick_graph = () => {
   if (education.value == "Pie") {
@@ -64,18 +27,17 @@ var draw_pie_chart = (chart_type) => {
   // console.log(chart_type.id);
   if (chart_type.id == "edu_chart") {
     var edu_data = new google.visualization.DataTable();
-    edu_data.addColumn('string', 'Employee Name');
+    edu_data.addColumn('string', 'Category');
     edu_data.addColumn('number', 'People');
     edu_data.addRows(4);
-
     edu_data.setCell(0, 0, 'Percentage of adults with less than a high school diploma, 2017-21');
     edu_data.setCell(1, 0, 'Percentage of adults with a high school diploma only, 2017-21');
     edu_data.setCell(2, 0, 'Percentage of adults completing some college or associate\'s degree, 2017-21');
     edu_data.setCell(3, 0, 'Percentage of adults with a bachelor\'s degree or higher, 2017-21');
 
-    for (let i = 4; i<8; i++){
-      var num = parseInt(document.getElementById("edu"+i).innerText)//turns string into int
-      edu_data.setCell(i-4, 1, num);
+    for (let i = 4; i < 8; i++) {
+      var num = parseInt(document.getElementById("edu" + i).innerText)//turns string into int
+      edu_data.setCell(i - 4, 1, num);
     }
 
     var options = {
@@ -86,13 +48,17 @@ var draw_pie_chart = (chart_type) => {
 
     var chart = new google.visualization.PieChart(chart_type);
     chart.draw(edu_data, options);
-  }else{
+  };
+
+  if (chart_type.id == "job_chart") {
     var job_data = new google.visualization.DataTable();
-    job_data.addColumn('string', 'Employee Name');
+    job_data.addColumn('string', 'Category');
     job_data.addColumn('number', 'People');
-    job_data.addRows(1);
-    job_data.setCell(0, 0, "a");
-    job_data.setCell(0, 1, "1");
+    job_data.addRows(2);
+    job_data.setCell(0, 0, "Employed population in 2020");
+    job_data.setCell(0, 1, parseInt(document.getElementById("employed2020").innerText));
+    job_data.setCell(1, 0, "Unemployed population in 2020");
+    job_data.setCell(1, 1, parseInt(document.getElementById("unemployed2020").innerText));
 
     var options = {
       title: 'Unemployment Rate', //title of chart
@@ -107,17 +73,19 @@ var draw_pie_chart = (chart_type) => {
 };
 
 function draw_bar_chart(chart_type) {
-  if (chart_type.id == "edu_chart"){
+
+  if (chart_type.id == "edu_chart") {
     var edu_data = new google.visualization.DataTable();
-    edu_data.addColumn('string', 'Employee Name');
+    edu_data.addColumn('string', 'Category');
     edu_data.addColumn('number', 'People');
     edu_data.addRows(4);
     edu_data.setCell(0, 0, 'Less than a high school diploma, 2017-21');
     edu_data.setCell(1, 0, 'High school diploma only, 2017-21');
     edu_data.setCell(2, 0, 'Some college or associate\'s degree, 2017-21');
     edu_data.setCell(3, 0, 'Bachelor\'s degree or higher, 2017-21');
-    for (let i = 0; i<4; i++){
-      var num = parseInt(document.getElementById("edu"+i).innerText)//turns string into int
+
+    for (let i = 0; i < 4; i++) {
+      var num = parseInt(document.getElementById("edu" + i).innerText)//turns string into int
       edu_data.setCell(i, 1, num);
     }
 
@@ -128,37 +96,49 @@ function draw_bar_chart(chart_type) {
 
     var chart = new google.visualization.ColumnChart(chart_type);
     chart.draw(edu_data, options);
-  }else{
+  };
+
+  if (chart_type.id == "job_chart") {
     var job_data = new google.visualization.DataTable();
-    job_data.addColumn('string', 'Employee Name');
-    job_data.addColumn('number', 'People');
-    job_data.addRows(1);
-    job_data.setCell(0, 0, "a");
-    job_data.setCell(0, 1, "1");
+    job_data.addColumn('string', 'Year');
+    job_data.addColumn('number', 'People umemployed');
+    job_data.addRows(6);
+    job_data.setCell(0, 0, "2000");
+    job_data.setCell(1, 0, "2004");
+    job_data.setCell(2, 0, "2008");
+    job_data.setCell(3, 0, "2012");
+    job_data.setCell(4, 0, "2016");
+    job_data.setCell(5, 0, "2020");
+
+    for (let i = 0; i < 6; i++) {
+      var num = parseInt(document.getElementById("job" + i).innerText)//turns string into int
+      job_data.setCell(i, 1, num);
+    }
 
     var options = {
       title: 'Unemployment Rate', //title of chart
       height: 300
     }
+
     var chart = new google.visualization.ColumnChart(chart_type);
     chart.draw(job_data, options);
   }
-  /*
-  var data = google.visualization.arrayToDataTable(
-  //   [
-  //   ['Year', 'Asia'],
-  //   ['2012', 900],
-  //   ['2013', 1000],
-  //   ['2014', 1170],
-  //   ['2015', 1250],
-  //   ['2016', 1530]
-  // ]
-  edu_data.innerText
-  );
-*/
 };
 
+// light vs dark mode
+var theme = document.getElementById("theme");
+var theme_text = document.getElementById("theme_text");
+const mode = localStorage.getItem("mode");//get cookie with mode
+document.documentElement.setAttribute('data-bs-theme', mode); //makes the html remember the mode
 
+// button handling
+var button_A = document.getElementById("a");
+var button_B = document.getElementById("b");
+var button_C = document.getElementById("c");
+var button_D = document.getElementById("d");
+var next = document.getElementById("next");
+
+// theme handling functions--------------------------------------------------------------
 var switch_theme = () => {
   if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
     document.documentElement.setAttribute('data-bs-theme', 'light')
@@ -181,7 +161,6 @@ var switch_theme = () => {
     next.className = "btn btn-warning m-3";
   }
 };
-
 
 var mode_label = () => {
   if (mode == "light") {
@@ -207,8 +186,6 @@ var mode_label = () => {
 mode_label();
 theme.addEventListener("change", switch_theme);
 
-//console.log(education.value);
-//console.log(unemployment.value);
-education.addEventListener("change", pick_graph);
 window.onresize = pick_graph;
+education.addEventListener("change", pick_graph);
 unemployment.addEventListener("change", pick_graph);
