@@ -79,7 +79,9 @@ var draw_pie_chart = (chart_type) => {
     }
 
     var options = {
-      title: 'Education Rate' //title of chart
+      title: 'Education Rate', //title of chart
+      height: 300,
+      is3D: true
     }
 
     var chart = new google.visualization.PieChart(chart_type);
@@ -93,7 +95,9 @@ var draw_pie_chart = (chart_type) => {
     job_data.setCell(0, 1, "1");
 
     var options = {
-      title: 'Unemployment Rate' //title of chart
+      title: 'Unemployment Rate', //title of chart
+      height: 300,
+      is3D: true
     }
 
     var chart = new google.visualization.PieChart(chart_type);
@@ -118,7 +122,8 @@ function draw_bar_chart(chart_type) {
     }
 
     var options = {
-      title: 'Education Rate' //title of chart
+      title: 'Education Rate', //title of chart
+      height: 300
     };
 
     var chart = new google.visualization.ColumnChart(chart_type);
@@ -132,7 +137,8 @@ function draw_bar_chart(chart_type) {
     job_data.setCell(0, 1, "1");
 
     var options = {
-      title: 'Unemployment Rate' //title of chart
+      title: 'Unemployment Rate', //title of chart
+      height: 300
     }
     var chart = new google.visualization.ColumnChart(chart_type);
     chart.draw(job_data, options);
