@@ -23,6 +23,8 @@ The website allows users to guess which 2020 presidential candidate won in a cer
 
 ## Data
 * Source: https://www.kaggle.com/datasets/unanimad/us-election-2020?select=president_county_candidate.csv 
-* Description: Result of US 2020 election broken down by county
+* Description: Results of US 2020 election, specifies the other candidates
+* Source: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ
+* Description: Result of US 2000-2020 election, broken down by county, does not specify who the other candidates are
 * Source: https://www.ers.usda.gov/data-products/county-level-data-sets/county-level-data-sets-download-data/ 
 * Description: Datasets on poverty rates, unemployment rates, education levels, and median household income broken down by county
