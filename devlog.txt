@@ -161,7 +161,7 @@ SelenaH, WanyingL, JamesY, SadiN 2023-5-16 14:06
 - trying to figure out how to fix president_county_candidate issue 
 - figured out the specific pieces of data we want from unemployment and how it'll be displayed
 ==============================================================
-SelenaH 2023-5-16 18:03
+JamesY 2023-5-16 18:03
 --------------------------------------------------------------
 - sent data for education to js
 ==============================================================
