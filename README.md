@@ -11,7 +11,7 @@ The website allows users to guess which 2020 presidential candidate won in a cer
 1) Navigate to the folder where you wish to store the repository using `cd`. 
 2) Clone this repo by entering `git clone git@github.com:selenaho/Project4.git` and navigate into Project4. 
 3) Create and activate a virtual environment through the `python3 -m venv <VENV_NAME>` command. 
-4) To activate: source `<VENV_NAME>/bin/activate`
+4) To activate: `source <VENV_NAME>/bin/activate`
 5) Install all required elements found in the `requirements.txt` file using the `pip install -r requirements.txt` command.  
 
 ### How to Run
