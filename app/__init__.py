@@ -129,20 +129,39 @@ def result(state, county, bool):
         
         winner = table.countyWin(stateName, countyName)[0]
 
+        #UNEMPLOYMENT
         unemployment = table.getUnemployment(stateName, countyName)
         print(stateName)
         print(countyName)
         print("unemployment:")
         print(unemployment)
+        #order of the returned array: 
+        #0: rate2000
+        #1: rate2004
+        #2: rate2008
+        #3: rate2012
+        #4: rate2016
+        #5: employed2020
+        #6: unemployed2020
+        #7: rate2020
+
+        rate2000 = unemployment[0][4]
+        rate2004 = unemployment[1][4]
+        rate2008 = unemployment[2][4]
+        rate2012 = unemployment[3][4]
+        rate2016 = unemployment[4][4]
+        employed2020 = unemployment[5][4]
+        unemployed2020 = unemployment[6][4]
+        rate2020 = unemployment[7][4] 
 
         #poverty section
         poverty = table.getPoverty(stateName, countyName)
-        print(poverty)
+        #print(poverty)
         
         countyPercentPovAll = poverty[1][4]
-        print(countyPercentPovAll)
+        #print(countyPercentPovAll)
         countyMedianHHIncome = poverty[2][4]
-        print(countyMedianHHIncome)
+        #print(countyMedianHHIncome)
 
         #print("Connecticut:")
         #print(table.getPoverty("Connecticut", "Madison"))
@@ -150,29 +169,30 @@ def result(state, county, bool):
         #ALSO COUNTIES NAMED DIFFERENTLY IN ALASKA
 
         statePov = table.getPoverty(stateName, stateName)
-        print(statePov)
+        #print(statePov)
         statePovRate = statePov[1][4]
-        print(statePovRate)
+        #print(statePovRate)
 
         USPov = table.getPoverty("United States", "United States")
-        print(USPov)
+        #print(USPov)
         USPovRate = USPov[1][4]
-        print(USPovRate)
+        #print(USPovRate)
         USMedianHHIncome = USPov[2][4]
 
         education = table.getEducation(stateName, countyName)
-        print(education)
+        #print(education)
 
         #[('39085', 'OH', 'Lake County', 'Less than a high school diploma, 2017-21', '11693'), ('39085', 'OH', 'Lake County', 'High school diploma only, 2017-21', '52584'), ('39085', 'OH', 'Lake County', "Some college or associate's degree, 2017-21", '55194'), ('39085', 'OH', 'Lake County', "Bachelor's degree or higher, 2017-21", '48445'), ('39085', 'OH', 'Lake County', 'Percent of adults with less than a high school diploma, 2017-21', '6.963600848'), ('39085', 'OH', 'Lake County', 'Percent of adults with a high school diploma only, 2017-21', '31.31565783'), ('39085', 'OH', 'Lake County', "Percent of adults completing some college or associate's degree, 2017-21", '32.87000643'), ('39085', 'OH', 'Lake County', "Percent of adults with a bachelor's degree or higher, 2017-21", '28.85073489')]
 
+        #EDUCATION
         educationArray = []
         for i in range(len(education)):
             dataTuple = (education[i][3], education[i][4])
             educationArray.append(dataTuple)
-        print("EDUCATION")
-        print(educationArray)
+        #print("EDUCATION")
+        #print(educationArray)
 
-        #pass the data into the render template through here using stateName and countyName to get data first
+        
         return render_template("result.html",\
         countyName = countyName, \
         stateName = stateName, \
@@ -191,7 +211,15 @@ def result(state, county, bool):
         edu4 = educationArray[4][1], \
         edu5 = educationArray[5][1], \
         edu6 = educationArray[6][1], \
-        edu7 = educationArray[7][1])
+        edu7 = educationArray[7][1], \
+        job0 = rate2000, \
+        job1 = rate2004, \
+        job2 = rate2008, \
+        job3 = rate2012, \
+        job4 = rate2016, \
+        job5 = rate2020, \
+        employed2020 = employed2020, \
+        unemployed2020 = unemployed2020)
     else:
         return redirect(url_for("main_page"))
 
