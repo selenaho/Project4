@@ -21,9 +21,14 @@ var edu5 = document.getElementById("edu5");
 var edu6 = document.getElementById("edu6");
 var edu7 = document.getElementById("edu7");
 
-var edu_data = new google.visualization.DataTable();
-
 google.charts.load('current', { 'packages': ['corechart'] });
+
+/*var edu_data = new google.visualization.DataTable();
+edu_data.addColumn('string', 'Employee Name');
+edu_data.addColumn('integer', 'Start Date');
+edu_data.addRows(6);
+edu_data.setCell(0, 0, 'Mike');
+edu_data.setCell(0, 0, 1);*/
 
 // two charts
 var education = document.getElementById("education");//education dropdown
@@ -36,6 +41,8 @@ var job_charts = document.getElementById('job_chart');//unemployment chart div
 //console.log(typeof edu_data.innerText)
 //let edu_string = edu_data.innerText
 //var job_data = document.getElementById("job_data");
+
+//console.log(document.getElementById("edu7").innerText)
 
 var pick_graph = () => {
   if (education.value == "Pie") {
@@ -56,33 +63,81 @@ var draw_pie_chart = (chart_type) => {
 
   // console.log(chart_type.id);
   if (chart_type.id == "edu_chart") {
+    var edu_data = new google.visualization.DataTable();
+    edu_data.addColumn('string', 'Employee Name');
+    edu_data.addColumn('number', 'People');
+    edu_data.addRows(4);
+
+    edu_data.setCell(0, 0, 'Percentage of adults with less than a high school diploma, 2017-21');
+    edu_data.setCell(1, 0, 'Percentage of adults with a high school diploma only, 2017-21');
+    edu_data.setCell(2, 0, 'Percentage of adults completing some college or associate\'s degree, 2017-21');
+    edu_data.setCell(3, 0, 'Percentage of adults with a bachelor\'s degree or higher, 2017-21');
+
+    for (let i = 4; i<8; i++){
+      var num = parseInt(document.getElementById("edu"+i).innerText)//turns string into int
+      edu_data.setCell(i-4, 1, num);
+    }
+
     var options = {
       title: 'Education Rate' //title of chart
     }
-  }
-  if (chart_type.id == "job_chart") {
+
+    var chart = new google.visualization.PieChart(chart_type);
+    chart.draw(edu_data, options);
+  }else{
+    var job_data = new google.visualization.DataTable();
+    job_data.addColumn('string', 'Employee Name');
+    job_data.addColumn('number', 'People');
+    job_data.addRows(1);
+    job_data.setCell(0, 0, "a");
+    job_data.setCell(0, 1, "1");
+
     var options = {
       title: 'Unemployment Rate' //title of chart
     }
+
+    var chart = new google.visualization.PieChart(chart_type);
+    chart.draw(job_data, options);
   }
 
-  var data = google.visualization.arrayToDataTable([
-    ['Task', 'Hours per Day'],
-    ['Work', 11],
-    ['Eat', 2],
-    ['Commute', 2],
-    ['Watch TV', 2],
-    ['Sleep', 7]
-  ]);
-
-
-  var chart = new google.visualization.PieChart(chart_type);
-
-  chart.draw(data, options);
 };
 
 function draw_bar_chart(chart_type) {
+  if (chart_type.id == "edu_chart"){
+    var edu_data = new google.visualization.DataTable();
+    edu_data.addColumn('string', 'Employee Name');
+    edu_data.addColumn('number', 'People');
+    edu_data.addRows(4);
+    edu_data.setCell(0, 0, 'Less than a high school diploma, 2017-21');
+    edu_data.setCell(1, 0, 'High school diploma only, 2017-21');
+    edu_data.setCell(2, 0, 'Some college or associate\'s degree, 2017-21');
+    edu_data.setCell(3, 0, 'Bachelor\'s degree or higher, 2017-21');
+    for (let i = 0; i<4; i++){
+      var num = parseInt(document.getElementById("edu"+i).innerText)//turns string into int
+      edu_data.setCell(i, 1, num);
+    }
 
+    var options = {
+      title: 'Education Rate' //title of chart
+    };
+
+    var chart = new google.visualization.ColumnChart(chart_type);
+    chart.draw(edu_data, options);
+  }else{
+    var job_data = new google.visualization.DataTable();
+    job_data.addColumn('string', 'Employee Name');
+    job_data.addColumn('number', 'People');
+    job_data.addRows(1);
+    job_data.setCell(0, 0, "a");
+    job_data.setCell(0, 1, "1");
+
+    var options = {
+      title: 'Unemployment Rate' //title of chart
+    }
+    var chart = new google.visualization.ColumnChart(chart_type);
+    chart.draw(job_data, options);
+  }
+  /*
   var data = google.visualization.arrayToDataTable(
   //   [
   //   ['Year', 'Asia'],
@@ -94,21 +149,7 @@ function draw_bar_chart(chart_type) {
   // ]
   edu_data.innerText
   );
-
-  if (chart_type.id == "edu_chart") {
-    var options = {
-      title: 'Education Rate' //title of chart
-    };
-  }
-  if (chart_type.id == "job_chart") {
-    var options = {
-      title: 'Unemployment Rate' //title of chart
-    }
-
-  }
-
-  var chart = new google.visualization.ColumnChart(chart_type);
-  chart.draw(data, options);
+*/
 };
 
 
@@ -156,11 +197,7 @@ var mode_label = () => {
   }
 };
 
-var make_table = () =>{
-  edu_data.addColumn()
-}
-
-console.log(window.location.pathname);
+//console.log(window.location.pathname);
 mode_label();
 theme.addEventListener("change", switch_theme);
 
