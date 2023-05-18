@@ -173,3 +173,13 @@ WanyingL 2023-5-16 17:13
 --------------------------------------------------------------
 - finished presenting unemployment data via google chart
 ==============================================================
+WanyingL 2023-5-16 17:03
+--------------------------------------------------------------
+SUMMARY OF THURSDAY'S TOUR
+- visted team BubblingBanjos, CtrlAltDefeat, Bunch of Lunch Munches, Dancing New Jeans, goobergang, Legendary Tribbles, squirrelz
+- takeaways/notes: 
+- It might be helpful to use js to create html elements instead of manually typing them up.
+- Leaflet: js library for interactive maps
+- flask-jinja as a way to pass data directly from python -> js (but the sript is inside html)
+- bootstrap flex
+==============================================================
