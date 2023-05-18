@@ -101,7 +101,7 @@ function draw_bar_chart(chart_type) {
   if (chart_type.id == "job_chart") {
     var job_data = new google.visualization.DataTable();
     job_data.addColumn('string', 'Year');
-    job_data.addColumn('number', 'People umemployed');
+    job_data.addColumn('number', 'Unemployment rate');
     job_data.addRows(6);
     job_data.setCell(0, 0, "2000");
     job_data.setCell(1, 0, "2004");
@@ -111,7 +111,7 @@ function draw_bar_chart(chart_type) {
     job_data.setCell(5, 0, "2020");
 
     for (let i = 0; i < 6; i++) {
-      var num = parseInt(document.getElementById("job" + i).innerText)//turns string into int
+      var num = parseFloat(document.getElementById("job" + i).innerText)//turns string into int
       job_data.setCell(i, 1, num);
     }
 

@@ -1,0 +1,28 @@
+.message {
+    animation-duration: 3s;
+    animation-name: slidein;
+  }
+
+ body{
+    background-color: aqua;
+ } 
+  
+  @keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+    25% {
+        color: red;
+    }
+    50%{
+        color: blue;
+    }
+    75%{
+        color: yellow;
+    }
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
