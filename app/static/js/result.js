@@ -36,8 +36,7 @@ var draw_pie_chart = (chart_type) => {
     edu_data.setCell(3, 0, 'Percentage of adults with a bachelor\'s degree or higher, 2017-21');
 
     for (let i = 4; i < 8; i++) {
-      var num = parseInt(document.getElementById("edu" + i).innerText)//turns string into int
-      edu_data.setCell(i - 4, 1, num);
+      edu_data.setCell(i - 4, 1, edulist[i]);
     }
 
     var options = {
@@ -56,9 +55,9 @@ var draw_pie_chart = (chart_type) => {
     job_data.addColumn('number', 'People');
     job_data.addRows(2);
     job_data.setCell(0, 0, "Employed population in 2020");
-    job_data.setCell(0, 1, parseInt(document.getElementById("employed2020").innerText));
+    job_data.setCell(0, 1, joblist[6]);
     job_data.setCell(1, 0, "Unemployed population in 2020");
-    job_data.setCell(1, 1, parseInt(document.getElementById("unemployed2020").innerText));
+    job_data.setCell(1, 1, joblist[7]);
 
     var options = {
       title: 'Unemployment Rate', //title of chart
@@ -85,8 +84,7 @@ function draw_bar_chart(chart_type) {
     edu_data.setCell(3, 0, 'Bachelor\'s degree or higher, 2017-21');
 
     for (let i = 0; i < 4; i++) {
-      var num = parseInt(document.getElementById("edu" + i).innerText)//turns string into int
-      edu_data.setCell(i, 1, num);
+      edu_data.setCell(i, 1, edulist[i]);//edulist is an array of edu0 to 7
     }
 
     var options = {
@@ -111,8 +109,7 @@ function draw_bar_chart(chart_type) {
     job_data.setCell(5, 0, "2020");
 
     for (let i = 0; i < 6; i++) {
-      var num = parseFloat(document.getElementById("job" + i).innerText)//turns string into int
-      job_data.setCell(i, 1, num);
+      job_data.setCell(i, 1, joblist[i]);
     }
 
     var options = {
@@ -181,6 +178,12 @@ var mode_label = () => {
     next.className = "btn btn-warning m-3";
   }
 };
+
+/*
+var request = new XMLHttpRequest();
+request.open('POST', '/', true);
+request.send(winnerIndex);
+*/
 
 //console.log(window.location.pathname);
 mode_label();
