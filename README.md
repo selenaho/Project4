@@ -15,9 +15,9 @@ The website allows users to guess which 2020 presidential candidate won in a cer
 5) Install all required elements found in the `requirements.txt` file using the `pip install -r requirements.txt` command.  
 
 ### How to Run
-5) cd into `app/` 
-6) Run the `__init__.py` file in the app route through the `python3 __init__.py` command. 
-6) Navigate to the site located at `http://127.0.0.1:5000`. 
+1) cd into `app/` 
+2) Run the `__init__.py` file in the app route through the `python3 __init__.py` command. 
+3) Navigate to the site located at `http://127.0.0.1:5000`. 
 
 ## or you can go here: (link)
 
