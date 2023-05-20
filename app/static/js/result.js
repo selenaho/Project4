@@ -3,6 +3,7 @@ var education = document.getElementById("education");//education dropdown
 var unemployment = document.getElementById("unemployment");//unemployment dropdown
 var edu_charts = document.getElementById('edu_chart');//education chart div
 var job_charts = document.getElementById('job_chart');//unemployment chart div
+var client_color = document.getElementById("barGraphColor");
 
 // chart making functions--------------------------------------------------------------
 google.charts.load('current', { 'packages': ['corechart'] });
@@ -73,6 +74,8 @@ var draw_pie_chart = (chart_type) => {
 
 function draw_bar_chart(chart_type) {
 
+  var color_from_client = client_color.value;
+
   if (chart_type.id == "edu_chart") {
     var edu_data = new google.visualization.DataTable();
     edu_data.addColumn('string', 'Category');
@@ -89,7 +92,8 @@ function draw_bar_chart(chart_type) {
 
     var options = {
       title: 'Education Rate', //title of chart
-      height: 300
+      height: 300,
+      colors: [color_from_client]
     };
 
     var chart = new google.visualization.ColumnChart(chart_type);
@@ -114,7 +118,8 @@ function draw_bar_chart(chart_type) {
 
     var options = {
       title: 'Unemployment Rate', //title of chart
-      height: 300
+      height: 300,
+      colors: [color_from_client]
     }
 
     var chart = new google.visualization.ColumnChart(chart_type);
@@ -197,5 +202,7 @@ mode_label();
 theme.addEventListener("change", switch_theme);
 
 window.onresize = pick_graph;
+client_color.addEventListener("change", pick_graph);
 education.addEventListener("change", pick_graph);
 unemployment.addEventListener("change", pick_graph);
+

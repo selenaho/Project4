@@ -183,3 +183,7 @@ SUMMARY OF THURSDAY'S TOUR
 - flask-jinja as a way to pass data directly from python -> js (but the sript is inside html)
 - bootstrap flex
 ==============================================================
+WanyingL 2023-5-16 11:12
+--------------------------------------------------------------
+- finished color option for the bar graph (now clients can pick their fav color and have the bar graphs reflect that change)
+==============================================================
