@@ -185,7 +185,14 @@ request.open('POST', '/', true);
 request.send(winnerIndex);
 */
 
+var win_text = () =>{
+  if (won == "y"){
+    document.getElementById("message").style.color = "yellow";
+  }
+}
+
 //console.log(window.location.pathname);
+win_text();
 mode_label();
 theme.addEventListener("change", switch_theme);
 

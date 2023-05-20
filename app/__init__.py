@@ -219,7 +219,8 @@ def result(state, county, bool):
         job4 = rate2016, \
         job5 = rate2020, \
         employed2020 = employed2020, \
-        unemployed2020 = unemployed2020)
+        unemployed2020 = unemployed2020, \
+        bool = bool)
     else:
         return redirect(url_for("main_page"))
 
