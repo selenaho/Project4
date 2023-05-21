@@ -192,7 +192,16 @@ request.send(winnerIndex);
 
 var win_text = () =>{
   if (won == "y"){
-    document.getElementById("message").style.color = "yellow";
+    var message = document.getElementById("message");
+    message.animate(
+      {
+        opacity: [0, 1], // [ from, to ]
+        color: ["#ffe33f", "#ff8f20"], // [ from, to ]
+        transform: "rotate(360deg)",
+      },
+      4000
+    );
+    message.style.color = "#ff8f20";
   }
 }
 
@@ -202,7 +211,7 @@ mode_label();
 theme.addEventListener("change", switch_theme);
 
 window.onresize = pick_graph;
-client_color.addEventListener("change", pick_graph);
 education.addEventListener("change", pick_graph);
 unemployment.addEventListener("change", pick_graph);
 
+client_color.addEventListener("change", pick_graph);
