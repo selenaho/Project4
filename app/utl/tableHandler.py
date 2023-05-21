@@ -47,58 +47,57 @@ def splitSplit( source, splitter):
     return lst
 
 states = {
-    "Alabama":"AL",
-    "Alaska": "AK",
-    "Arizona": "AZ",
-    "Arkansas": "AR",
-    "California": "CA",
-    "Colorado": "CO",
-    "Connecticut": "CT",
-    "Delaware": "DE",
-    "District of Columbia": "DC",
-    "Florida": "FL",
-    "Georgia": "GA",
-    "Hawaii": "HI",
-    "Idaho": "ID",
-    "Illinois": "IL",
-    "Indiana": "IN",
-    "Iowa": "IA",
-    "Kansas": "KS",
-    "Kentucky": "KY",
-    "Louisiana": "LA",
-    "Maine": "ME",
-    "Maryland": "MD",
-    "Massachusetts": "MA",
-    "Michigan": "MI",
-    "Minnesota": "MN",
-    "Mississippi": "MS",
-    "Missouri": "MO",
-    "Montana": "MT",
-    "Nebraska": "NE",
-    "Nevada": "NV",
-    "New Hampshire": "NH",
-    "New Jersey": "NJ",
-    "New Mexico": "NM",
-    "New York": "NY",
-    "North Carolina": "NC",
-    "North Dakota": "ND",
-    "Ohio": "OH",
-    "Oklahoma": "OK",
-    "Oregon": "OR",
-    "Pennsylvania": "PA",
-    "Rhode Island": "RI",
-    "South Carolina": "SC",
-    "South Dakota": "SD",
-    "Tennessee": "TN", 
-    "Texas": "TX",
-    "Utah": "UT",
-    "Vermont": "VT",
-    "Virginia": "VA",
-    "Washington": "WA",
-    "West Virginia": "WV",
-    "Wisconsin": "WI",
-    "Wyoming": "WY",
-    "United States": "US"
+    "ALABAMA":"AL",
+    "ALASKA": "AK",
+    "ARIZONA": "AZ",
+    "ARKANSAS": "AR",
+    "CALIFORNIA": "CA",
+    "COLORADO": "CO",
+    "CONNECTICUT": "CT",
+    "DELAWARE": "DE",
+    "DISTRICT OF COLUMBIA": "DC",
+    "FLORIDA": "FL",
+    "GEORGIA": "GA",
+    "HAWAII": "HI",
+    "IDAHO": "ID",
+    "ILLINOIS": "IL",
+    "INDIANA": "IN",
+    "IOWA": "IA",
+    "KANSAS": "KS",
+    "KENTUCKY": "KY",
+    "LOUISIANA": "LA",
+    "MAINE": "ME",
+    "MARYLAND": "MD",
+    "MASSACHUSETTS": "MA",
+    "MICHIGAN": "MI",
+    "MINNESOTA": "MN",
+    "MISSISSIPPI": "MS",
+    "MISSOURI": "MO",
+    "MONTANA": "MT",
+    "NEBRASKA": "NE",
+    "NEVADA": "NV",
+    "NEW HAMPSHIRE": "NH",
+    "NEW JERSEY": "NJ",
+    "NEW MEXICO": "NM",
+    "NEW YORK": "NY",
+    "NORTH CAROLINA": "NC",
+    "NORTH DAKOTA": "ND",
+    "OHIO": "OH",
+    "OKLAHOMA": "OK",
+    "OREGON": "OR",
+    "PENNSYLVANIA": "PA",
+    "RHODE ISLAND": "RI",
+    "SOUTH CAROLINA": "SC",
+    "SOUTH DAKOTA": "SD",
+    "TENNESSEE": "TN", 
+    "TEXAS": "TX",
+    "UTAH": "UT",
+    "VERMONT": "VT",
+    "VIRGINIA": "VA",
+    "WASHINGTON": "WA",
+    "WEST VIRGINIA": "WV",
+    "WISCONSIN": "WI",
+    "WYOMING": "WY"
 }
 
 def loadElection():
@@ -108,26 +107,27 @@ def loadElection():
     c = db.cursor()
 
 # Loading up the csv
-    read = open(csvFolder + "/president_county_candidate.csv", "r")
+    read = open(csvFolder + "/countypres_2000-2020.csv", "r")
     full = read.readlines()
-
+#print(full)
 # Creating the table based on the first row of the csv
     cols = full[0].strip().split(",")
-    # print(colsString(cols))
+    print(cols)
+# print(colsString(cols))
     c.execute("create table if not exists ElectionResults2020(" + colsString(cols) + ");" )
+
 
 # Checking if the table is empty
     c.execute("select * from ElectionResults2020")
     empty = c.fetchone()
-    # print(empty)
+#print(empty)
     if (empty == None):
-#Filling out the table
         for row in full:
-            if( row != full[0]):
+            if( row[0:4] == "2020"):
                 line = row.strip().split(",")
-                #print(line)
+#print(line)
                 cmd = "insert into ElectionResults2020 values(?" + (", ?" *(len(line) - 1)) + ");"
-                #print(cmd)
+#print(cmd)
                 c.execute(cmd, tuple(line))
 
     db.commit()
@@ -138,8 +138,9 @@ def countyVoting(state, county): # Given a state and county, return the voting r
     db = sqlite3.connect(database)
     c = db.cursor()
 
-    cmd = "select candidate, party, total_votes, won from ElectionResults2020 where state=? and county=?;"
+    cmd = "select candidate, party, candidatevotes from ElectionResults2020 where state=? and county_name=?;"
     c.execute(cmd,(state, county))
+
     results = c.fetchall()
     if (results != None):
         db.commit()
@@ -156,7 +157,7 @@ def getCounties(): #Return a list of all counties with their state
     c = db.cursor()
 
     lst = []
-    c.execute("select state, county from ElectionResults2020")
+    c.execute("select state, county_name from ElectionResults2020")
     results = c.fetchall()
     for county in results:
         if (len(lst) == 0 or lst[-1] != county):
@@ -167,30 +168,28 @@ def getCounties(): #Return a list of all counties with their state
     return lst
 
 def getCandidates(): #Get a list of all people who participated in the election
-    db = sqlite3.connect(database)
-    c = db.cursor()
-
-    lst = []
-    c.execute("select candidate from ElectionResults2020")
-    results = c.fetchall()
-    for person in results:
-        if (not person in lst):
-            lst.append(person)
-    db.commit()
-    db.close()
-    return lst
+    return [('Joe Biden',), ('Donald J Trump',), ('Jo Jorgensen',), ('Howie Hawkins',), (' Write-ins',), ('Gloria La Riva',), ('Brock Pierce',), ('Rocky De La Fuente',), ('Don Blankenship',), ('Kanye West',), ('Brian Carroll',), ('Ricki Sue King',), ('Jade Simmons',), ('President Boddie',), ('Bill Hammons',), ('Tom Hoefling',), ('Alyson Kennedy',), ('Jerome Segal',), ('Phil Collins',), (' None of these candidates',), ('Sheila Samm Tittle',), ('Dario Hunter',), ('Joe McHugh',), ('Christopher LaFontaine',), ('Keith McCormic',), ('Brooke Paige',), ('Gary Swing',), ('Richard Duncan',), ('Blake Huber',), ('Kyle Kopitke',), ('Zachary Scalf',), ('Jesse Ventura',), ('Connie Gammon',), ('John Richard Myers',), ('Mark Charles',), ('Princess Jacob-Fambro',), ('Joseph Kishore',), ('Jordan Scott',)]
 
 def countyWin(state, county): #Given a state and county, return who won the election there
     db = sqlite3.connect(database)
     c = db.cursor()
 
-    cmd = "select candidate, party, total_votes from ElectionResults2020 where state=? and county=? and won='True';"
+
+    cmd = "select candidate, party, candidatevotes from ElectionResults2020 where state=? and county_name=?"
+
 
     c.execute(cmd,(state, county))
-    return c.fetchone()
+    poss = c.fetchall()
+    best = poss[0]
+    for row in poss:
+        if (row[2] > best[2]):
+            best = row
 
+
+    return best
     db.commit()
-    db.close()  
+    db.close()
+
 
 def getStates(): #list of all states
     db = sqlite3.connect(database)
@@ -212,7 +211,7 @@ def getCountyfromState(state): #given a state, get all the counties in the state
     c = db.cursor()
 
     lst = []
-    cmd = "select county from ElectionResults2020 where state=?;"
+    cmd = "select county_name from ElectionResults2020 where state=?;"
     c.execute(cmd, (state,))
     results = c.fetchall()
     for place in results:
