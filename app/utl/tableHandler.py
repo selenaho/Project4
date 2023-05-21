@@ -335,10 +335,16 @@ def getUnemployment(state, county):
 
 
     cmd = "select * from UnemploymentAndIncome where State=? and Area=?"
-    c.execute(cmd, (states[state], countyin))
-
+    print(state, county)
+    if (state == "DISTRICT OF COLUMBIA"):
+        print("yes")
+        c.execute(cmd, (states[state], county))
+    else:
+        c.execute(cmd, (states[state], countyin))
 
     something = c.fetchall()
+    print("Something:")
+    print(something)
     lst = []
     for row in something:
         if ("Unemployment_rate_2000" in row[3] \

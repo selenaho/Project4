@@ -155,6 +155,8 @@ def result(state, county, bool):
             unemployment = table.getUnemployment(stateName, countyName.title() + " Parish")
         if (not unemployment): #for virginia
             unemployment = table.getUnemployment(stateName, countyName.capitalize())
+        if (not unemployment): #dc
+            unemployment = table.getUnemployment(stateName, "District of Columbia")
         print(stateName)
         print(countyName)
         print("unemployment:")
@@ -186,6 +188,8 @@ def result(state, county, bool):
             poverty = table.getUnemployment(stateName, countyName.title() + " Parish")
         if(not poverty):
             poverty = table.getUnemployment(stateName, countyName.capitalize())
+        if(not poverty):
+            poverty = table.getUnemployment(stateName, "District of Columbia")
         #print(poverty)
        
         countyPercentPovAll = poverty[1][4]
@@ -201,6 +205,9 @@ def result(state, county, bool):
 
 
         statePov = table.getPoverty(stateName, stateName.title())
+        if(not statePov):
+            statePov = table.getPoverty(stateName, "District of Columbia")
+        
         #print(statePov)
         statePovRate = statePov[1][4]
         #print(statePovRate)
@@ -218,6 +225,8 @@ def result(state, county, bool):
             education = table.getUnemployment(stateName, countyName.title() + " Parish")
         if (not education):
             education = table.getUnemployment(stateName, countyName.capitalize())
+        if (not education):
+            education = table.getUnemployment(stateName, "District of Columbia")
         #print(education)
 
 
