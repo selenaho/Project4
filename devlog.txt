@@ -187,3 +187,8 @@ WanyingL 2023-5-16 11:12
 --------------------------------------------------------------
 - finished color option for the bar graph (now clients can pick their fav color and have the bar graphs reflect that change)
 ==============================================================
+SelenaH, SadiN 2023-5-20 22:04
+--------------------------------------------------------------
+- fixed database bugs with the new csv 
+- updated flask to work with the new database
+==============================================================

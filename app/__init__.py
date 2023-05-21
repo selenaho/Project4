@@ -3,20 +3,24 @@ import requests
 import random
 import os
 
+
 import utl.tableHandler as table
+
 
 app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def main_page():
     base = app.root_path
     table.loadElection()
-    
+   
     if request.method == 'GET':
         randState = random.choice(table.getStates())
+        print(randState)
         randCounty = random.choice(table.getCountyfromState(randState))
         #print(randState)
         #print(randCounty)
-        winner = table.countyWin(randState, randCounty)[0]
+        winner = table.countyWin(randState, randCounty)[0].title()
+        #print(table.countyWin("OKLAHOMA", "SEQUOYAH"))
         #print(winner)
         winnerIndex = random.randint(0,3)
         choiceArray = [0] * 4
@@ -26,19 +30,23 @@ def main_page():
         #print(table.getCandidates()[0][0])
         #print(len(table.getCandidates()))
 
+
         #otherIndex is the index of either Trump or Biden depending on who the winner is
         #makes it so that Trump and Biden are always together or if there's another winner (did that happen?) then there will be at least Trump or Biden
         otherIndex = random.randint(0,3)
         while(otherIndex == winnerIndex):
             otherIndex = random.randint(0,3)
-        other = "Donald Trump"
-        if(winner == "Donald Trump"):
-            other = "Joe Biden"
+        other = "Donald J Trump"
+        if(winner == "Donald J Trump"):
+            other = "Joseph R Biden Jr"
         choiceArray[otherIndex] = other
 
+
         candidateArray = table.getCandidates()
-        removeRepeat(candidateArray, winner) #removes the winner from the candidate array so no repeats in mc
-        removeRepeat(candidateArray, other) #removes the other opponent
+        removeRepeat(candidateArray, "Joe Biden")
+        removeRepeat(candidateArray, "Donald J Trump")
+        print(candidateArray)
+
 
         #populating the other choices
         for i in range(len(choiceArray)):
@@ -49,15 +57,17 @@ def main_page():
                 removeRepeat(candidateArray, choiceArray[i])
         #print(choiceArray)
 
+
         #using replace to deal with the spaces in some of the county and state names
         stateNameValue = randState.replace(" ", "|")
         countyNameValue = randCounty.replace(" ", "|")
 
-        return render_template("game.html", countyName = randCounty, stateName = randState, stateNameValue = stateNameValue, countyNameValue = countyNameValue, a = choiceArray[0], b = choiceArray[1], c = choiceArray[2], d = choiceArray[3], winnerIndex = winnerIndex)#pass through the four answer choices and index of the correct answer 
+
+        return render_template("game.html", countyName = randCounty.title(), stateName = randState.title(), stateNameValue = stateNameValue, countyNameValue = countyNameValue, a = choiceArray[0], b = choiceArray[1], c = choiceArray[2], d = choiceArray[3], winnerIndex = winnerIndex)#pass through the four answer choices and index of the correct answer
     else:
-        
-        county = request.form.get("county") #gets hidden value of county name from form
-        state = request.form.get("state") #gets hidden value of state name from form
+       
+        county = request.form.get("county").upper() #gets hidden value of county name from form
+        state = request.form.get("state").upper() #gets hidden value of state name from form
         #winner = table.countyWin(state, county)
         #print(table.countyWin(state, county))
         #print(winner)
@@ -70,12 +80,12 @@ def main_page():
         #print(county)
         winnerIndex = request.form.get("winnerIndex")
         won = False
-        
+       
         #print(type(winnerIndex))
         if 'a' in request.form: #if user pressed on button choice a
             #print("presssed")
             #print(winnerIndex)
-            
+           
             if winnerIndex == "0":
                 #print("0 yup")
                 won = True
@@ -95,6 +105,7 @@ def main_page():
             bool="n"
         return redirect(url_for("result", state=state, county=county, bool=bool))#pass through correct answer, county name, state name
 
+
 #function to help make sure the answer choices have no repeats
 def removeRepeat(array, choice):
     for i in range(len(array)):
@@ -104,6 +115,7 @@ def removeRepeat(array, choice):
             array.pop(i)
             #print(array)
             break
+
 
 @app.route("/result/<state>/<county>/<bool>", methods=['GET', 'POST'])
 def result(state, county, bool):
@@ -116,7 +128,7 @@ def result(state, county, bool):
         #print(path)
         #print(stateName)
         #print(countyName)
-        
+       
         #selecting win/loss message
         won = path[4]
         message = ""
@@ -126,16 +138,28 @@ def result(state, county, bool):
             message = random.choice(winMessages)
         if won == "n":
             message = random.choice(loseMessages)
-        
-        winner = table.countyWin(stateName, countyName)[0]
+       
+        winner = table.countyWin(stateName, countyName)[0].title()
+
 
         #UNEMPLOYMENT
-        unemployment = table.getUnemployment(stateName, countyName)
+        print(stateName, countyName.title())
+        #print(table.getUnemployment("SOUTH DAKOTA", "Jones County"))
+        print("_____")
+        #print(table.getUnemployment("South Dakota", "Jones County"))
+        #print(countyName.title() + " County")
+        unemployment = table.getUnemployment(stateName, countyName.title() + " County")
+       
+       
+        if (not unemployment): #doing this because counties in louisiana end in parish not county
+            unemployment = table.getUnemployment(stateName, countyName.title() + " Parish")
+        if (not unemployment): #for virginia
+            unemployment = table.getUnemployment(stateName, countyName.capitalize())
         print(stateName)
         print(countyName)
         print("unemployment:")
         print(unemployment)
-        #order of the returned array: 
+        #order of the returned array:
         #0: rate2000
         #1: rate2004
         #2: rate2008
@@ -145,6 +169,7 @@ def result(state, county, bool):
         #6: unemployed2020
         #7: rate2020
 
+
         rate2000 = unemployment[0][4]
         rate2004 = unemployment[1][4]
         rate2008 = unemployment[2][4]
@@ -152,26 +177,34 @@ def result(state, county, bool):
         rate2016 = unemployment[4][4]
         employed2020 = unemployment[5][4]
         unemployed2020 = unemployment[6][4]
-        rate2020 = unemployment[7][4] 
+        rate2020 = unemployment[7][4]
+
 
         #poverty section
-        poverty = table.getPoverty(stateName, countyName)
+        poverty = table.getPoverty(stateName, countyName.title() + " County")
+        if (not poverty):
+            poverty = table.getUnemployment(stateName, countyName.title() + " Parish")
+        if(not poverty):
+            poverty = table.getUnemployment(stateName, countyName.capitalize())
         #print(poverty)
-        
+       
         countyPercentPovAll = poverty[1][4]
         #print(countyPercentPovAll)
         countyMedianHHIncome = poverty[2][4]
         #print(countyMedianHHIncome)
+
 
         #print("Connecticut:")
         #print(table.getPoverty("Connecticut", "Madison"))
         #NEED TO ADD SMTH TO HANDLE CASES LIKE THIS WHERE MADISONE EXISTS IN ONE TABLE AND NOT THE OTHER
         #ALSO COUNTIES NAMED DIFFERENTLY IN ALASKA
 
-        statePov = table.getPoverty(stateName, stateName)
+
+        statePov = table.getPoverty(stateName, stateName.title())
         #print(statePov)
         statePovRate = statePov[1][4]
         #print(statePovRate)
+
 
         USPov = table.getPoverty("United States", "United States")
         #print(USPov)
@@ -179,10 +212,17 @@ def result(state, county, bool):
         #print(USPovRate)
         USMedianHHIncome = USPov[2][4]
 
-        education = table.getEducation(stateName, countyName)
+
+        education = table.getEducation(stateName, countyName.title() + " County")
+        if (not education):
+            education = table.getUnemployment(stateName, countyName.title() + " Parish")
+        if (not education):
+            education = table.getUnemployment(stateName, countyName.capitalize())
         #print(education)
 
+
         #[('39085', 'OH', 'Lake County', 'Less than a high school diploma, 2017-21', '11693'), ('39085', 'OH', 'Lake County', 'High school diploma only, 2017-21', '52584'), ('39085', 'OH', 'Lake County', "Some college or associate's degree, 2017-21", '55194'), ('39085', 'OH', 'Lake County', "Bachelor's degree or higher, 2017-21", '48445'), ('39085', 'OH', 'Lake County', 'Percent of adults with less than a high school diploma, 2017-21', '6.963600848'), ('39085', 'OH', 'Lake County', 'Percent of adults with a high school diploma only, 2017-21', '31.31565783'), ('39085', 'OH', 'Lake County', "Percent of adults completing some college or associate's degree, 2017-21", '32.87000643'), ('39085', 'OH', 'Lake County', "Percent of adults with a bachelor's degree or higher, 2017-21", '28.85073489')]
+
 
         #EDUCATION
         educationArray = []
@@ -192,10 +232,11 @@ def result(state, county, bool):
         #print("EDUCATION")
         #print(educationArray)
 
-        
+
+       
         return render_template("result.html",\
-        countyName = countyName, \
-        stateName = stateName, \
+        countyName = countyName.title(), \
+        stateName = stateName.title(), \
         winner = winner, \
         message=message, \
         CountyPovertyRate = countyPercentPovAll, \
@@ -224,6 +265,7 @@ def result(state, county, bool):
     else:
         return redirect(url_for("main_page"))
 
+
 @app.route("/ignoreTesting")
 def testing():
     table.loadTableBasic("PopulationEstimates.csv", "CountyPopulation")
@@ -231,9 +273,9 @@ def testing():
     table.loadTableBasic("Education.csv", "Education")
     table.loadTableBasic("Unemployment.csv", "UnemploymentAndIncome")
     return ("Lets lookasee")
-    
+   
+
 
 if __name__ == "__main__":
     app.debug = True
     app.run()
-
