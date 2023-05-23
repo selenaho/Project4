@@ -19,7 +19,7 @@ The website allows users to guess which 2020 presidential candidate won in a cer
 2) Run the `__init__.py` file in the app route through the `python3 __init__.py` command. 
 3) Navigate to the site located at `http://127.0.0.1:5000`. 
 
-## or you can go here: (link)
+## or you can go here: [link](https://selena.newjeans.live:8080/)
 
 ## Data
 * Source: https://www.kaggle.com/datasets/unanimad/us-election-2020?select=president_county_candidate.csv 
