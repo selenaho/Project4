@@ -302,7 +302,7 @@ def getEducation(state, county):
     c = db.cursor()
 
 
-    cmd = "select * from Education where State=? and Area=?"
+    cmd = "select * from Education where State=? and Area LIKE ?"
     c.execute(cmd, (states[state], county))
 
 
@@ -320,7 +320,7 @@ def getPopulation(state, county):
     c = db.cursor()
 
 
-    cmd = "select * from CountyPopulation where State=? and Area=?"
+    cmd = "select * from CountyPopulation where State=? and Area LIKE ?"
     c.execute(cmd, (states[state], county))
 
 
@@ -334,7 +334,7 @@ def getUnemployment(state, county):
     countyin = county + ", " + states[state]
 
 
-    cmd = "select * from UnemploymentAndIncome where State=? and Area=?"
+    cmd = "select * from UnemploymentAndIncome where State=? and Area LIKE ?"
     print(state, county)
     if (state == "DISTRICT OF COLUMBIA"):
         print("yes")
@@ -365,7 +365,7 @@ def getPoverty(state, county):
     c = db.cursor()
 
 
-    cmd = "select * from Poverty where State=? and Area=?"
+    cmd = "select * from Poverty where State=? and Area LIKE ?"
     c.execute(cmd, (states[state], county))
 
 
