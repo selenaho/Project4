@@ -130,6 +130,10 @@ function draw_bar_chart(chart_type) {
 // light vs dark mode
 var theme = document.getElementById("theme");
 var theme_text = document.getElementById("theme_text");
+//sets mode to light mode if there is nothing in local storage
+if (localStorage.getItem("mode") == null){
+  localStorage.setItem("mode", "light");
+} 
 const mode = localStorage.getItem("mode");//get cookie with mode
 document.documentElement.setAttribute('data-bs-theme', mode); //makes the html remember the mode
 
