@@ -155,12 +155,14 @@ def result(state, county, bool):
             unemployment = table.getUnemployment(stateName, countyName.title() + " Parish")
         if (not unemployment): #for virginia
             unemployment = table.getUnemployment(stateName, countyName.capitalize())
+        if (not unemployment): #for the ones that are county/city
+            unemployment = table.getUnemployment(stateName, countyName.title() + " County/city")
         if (not unemployment): #dc
             unemployment = table.getUnemployment(stateName, "District of Columbia")
-        print(stateName)
-        print(countyName)
-        print("unemployment:")
-        print(unemployment)
+        #print(stateName)
+        #print(countyName)
+        #print("unemployment:")
+        #print(unemployment)
         #order of the returned array:
         #0: rate2000
         #1: rate2004
@@ -185,11 +187,13 @@ def result(state, county, bool):
         #poverty section
         poverty = table.getPoverty(stateName, countyName.title() + " County")
         if (not poverty):
-            poverty = table.getUnemployment(stateName, countyName.title() + " Parish")
+            poverty = table.getPoverty(stateName, countyName.title() + " Parish")
         if(not poverty):
-            poverty = table.getUnemployment(stateName, countyName.capitalize())
+            poverty = table.getPoverty(stateName, countyName.capitalize())
+        if (not poverty): #for the ones that are county/city
+            poverty = table.getPoverty(stateName, countyName.title() + " County/city")
         if(not poverty):
-            poverty = table.getUnemployment(stateName, "District of Columbia")
+            poverty = table.getPoverty(stateName, "District of Columbia")
         #print(poverty)
        
         countyPercentPovAll = poverty[1][4]
@@ -222,11 +226,13 @@ def result(state, county, bool):
 
         education = table.getEducation(stateName, countyName.title() + " County")
         if (not education):
-            education = table.getUnemployment(stateName, countyName.title() + " Parish")
+            education = table.getEducation(stateName, countyName.title() + " Parish")
         if (not education):
-            education = table.getUnemployment(stateName, countyName.capitalize())
+            education = table.getEducation(stateName, countyName.title() + " County/city")
         if (not education):
-            education = table.getUnemployment(stateName, "District of Columbia")
+            education = table.getEducation(stateName, countyName.capitalize())
+        if (not education):
+            education = table.getEducation(stateName, "District of Columbia")
         #print(education)
 
 
